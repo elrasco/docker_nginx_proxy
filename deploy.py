@@ -112,7 +112,8 @@ print(response.get('Status'))
 
 # → Docker Build
 print("→ Docker Build ")
-response = cli.build(path='Dockerfile.{}'.format(env),
+response = cli.build(path='.',
+                     dockerfile='Dockerfile.{}'.format(env),
                      rm=True,
                      tag="{}:{}".format(projectName, tag),
                      decode=True)

@@ -1,0 +1,15 @@
+{
+    "containerDefinitions": [{
+        "memory": 200,
+        "portMappings": [{
+            "hostPort": 200,
+            "containerPort": 80,
+            "protocol": "tcp"
+        }],
+        "essential": true,
+        "mountPoints": [],
+        "name": "prod-smallfish-proxy",
+        "cpu": 100
+    }],
+    "family": "prod-smallfish-proxy"
+}
