@@ -94,7 +94,7 @@ print(response)
 print("→ Building ")
 build_cmd = "yarn"
 print(build_cmd)
-proc = subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
+proc = os.subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
 for line in proc.stdout:
     print(line.decode('UTF-8'))
 
@@ -104,7 +104,7 @@ for line in proc.stdout:
 print("→ Generating templates ")
 build_cmd = "node index.js --env={}".format(env)
 print(build_cmd)
-proc = subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
+proc = os.subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
 for line in proc.stdout:
     print(line.decode('UTF-8'))
 
