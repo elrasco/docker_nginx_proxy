@@ -89,6 +89,26 @@ response = git.pull()
 print(response)
 
 ###################################################################
+#                           Build Stage
+###################################################################
+print("→ Building ")
+build_cmd = "yarn"
+print(build_cmd)
+proc = subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
+for line in proc.stdout:
+    print(line.decode('UTF-8'))
+
+###################################################################
+#                           Template Generation Stage
+###################################################################
+print("→ Generating templates ")
+build_cmd = "node index.js --env={}".format(env)
+print(build_cmd)
+proc = subprocess.Popen(build_cmd, stdout=subprocess.PIPE, shell=True)
+for line in proc.stdout:
+    print(line.decode('UTF-8'))
+
+###################################################################
 #                           Docker Stage
 ###################################################################
 
@@ -113,7 +133,6 @@ print(response.get('Status'))
 # → Docker Build
 print("→ Docker Build ")
 response = cli.build(path='.',
-                     dockerfile='Dockerfile.{}'.format(env),
                      rm=True,
                      tag="{}:{}".format(projectName, tag),
                      decode=True)

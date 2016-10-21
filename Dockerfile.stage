@@ -1,2 +1,0 @@
-FROM nginx
-COPY hosts/stage/* /etc/nginx/conf.d/

@@ -1,2 +1,3 @@
-docker build -t smallfish_proxy_fe -f Dockerfile.dev .
-docker run -p 80:80 smallfish_proxy_fe:latest
+node index.js --env=$1
+docker build -t smallfish_proxy .
+docker run -p 80:80 smallfish_proxy:latest

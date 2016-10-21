@@ -1,0 +1,16 @@
+{
+  "name": "smallfish_proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://rporrinis:matr.071969@bitbucket.org/_smallfish/smallfish_proxy.git",
+    "type": "git"
+  },
+  "author": "rporrinis <riccardo@smallfish.com>",
+  "license": "MIT",
+  "dependencies": {
+    "del": "^2.2.2",
+    "glob": "^7.1.1",
+    "yargs": "^6.3.0"
+  }
+}
