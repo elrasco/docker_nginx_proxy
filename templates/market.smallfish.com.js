@@ -13,5 +13,15 @@ module.exports = env => (`
               proxy_pass		http://${env}api.smallfish.com/;
         			proxy_redirect		off;
             }
+
+            location /smallfish-upload {
+              proxy_pass		http://${env}upload.smallfish.com/;
+        			proxy_redirect		off;
+            }
+
+            location /smallfish-live {
+              proxy_pass		http://stage-live.smallish.com/;
+        			proxy_redirect		off;
+            }
     }
 `);
