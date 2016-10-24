@@ -8,5 +8,10 @@ module.exports = env => (`
               proxy_pass		http://${env}services.sml-server.com:90/;
         			proxy_redirect		off;
             }
+
+            location /marketplace-be {
+              proxy_pass		http://${env}api.smallfish.com/;
+        			proxy_redirect		off;
+            }
     }
 `);
