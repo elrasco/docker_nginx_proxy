@@ -2,6 +2,7 @@ module.exports = env => (`
     server {
             listen 80;
             server_name ${env}market.smallfish.com;
+            server_name ${env}travelpeople.smallfish.com;
             server_name ${env}market.sml-server.com;
 
             location / {
