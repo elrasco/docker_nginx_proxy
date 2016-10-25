@@ -20,12 +20,11 @@ module.exports = env => (`
             }
 
             location /socket.io {
-                error_log /var/log/nginx-socket-errors.log debug;
-
                 proxy_pass http://${env}live.smallfish.com;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
+                proxy_set_header Host $host;
             }
     }
 `);
