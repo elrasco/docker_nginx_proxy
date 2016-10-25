@@ -19,8 +19,8 @@ module.exports = env => (`
         			proxy_redirect		off;
             }
 
-            location /smallfish-live/ {
-                proxy_pass http://${env}live.smallfish.com/;
+            location /smallfish-live {
+                proxy_pass http://${env}live.smallfish.com/socket.io/;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
