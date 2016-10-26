@@ -19,5 +19,15 @@ module.exports = env => (`
               proxy_pass		http://${env}upload.smallfish.com/;
         			proxy_redirect		off;
             }
+
+            location /live {
+              proxy_pass		http://${env}live.smallfish.com/socket.io;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection "upgrade";
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header Host $host;
+            }
     }
 `);
