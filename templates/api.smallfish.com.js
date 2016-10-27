@@ -5,7 +5,7 @@ module.exports = env => (`
               server_name ${env}api.sml-server.com;
 
               location / {
-                proxy_pass		http://${env}services.sml-server.com:81/;
+                proxy_pass		http://${env}services.sml-server.com:81;
     			      proxy_redirect		off;
               }
           }

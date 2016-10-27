@@ -11,12 +11,12 @@ module.exports = env => (`
             }
 
             location /marketplace-be {
-              proxy_pass		http://${env}api.smallfish.com/;
+              proxy_pass		http://${env}services.sml-server.com:81/;
         			proxy_redirect		off;
             }
 
             location /smallfish-upload {
-              proxy_pass		http://${env}upload.smallfish.com/;
+              proxy_pass		http://${env}services.sml-server.com:82/;
         			proxy_redirect		off;
             }
     }
