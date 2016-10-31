@@ -2,7 +2,9 @@
   "name": "smallfish_proxy",
   "version": "1.0.0",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter list test/test.suite.js"
+    "pretest": "./run.sh dev && sleep 1",
+    "test": "./node_modules/mocha/bin/mocha --reporter list test/test.suite.js",
+    "posttest": "./destroy.sh"
   },
   "devDependencies": {
     "bluebird": "^3.4.6",
