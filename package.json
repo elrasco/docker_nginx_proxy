@@ -4,9 +4,7 @@
   "scripts": {
     "start": "scripts/run.sh dev",
     "stop": "scripts/destroy.sh",
-    "pretest": "npm start && sleep 1",
-    "test": "./node_modules/mocha/bin/mocha --reporter list test/test.suite.js",
-    "posttest": "npm stop"
+    "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/test.suite.js; npm stop"
   },
   "devDependencies": {
     "bluebird": "^3.4.6",
