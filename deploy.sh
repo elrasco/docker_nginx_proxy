@@ -51,16 +51,20 @@ IMAGE_NAME=$PREFIX/$PROJECT_NAME:$TAG
 
 box_out 'Project: '$PROJECT_NAME 'ENV: '$ENV 'Image: '$PROJECT_NAME:$TAG
 
-box_out 'Git'
-bash scripts/pull.sh $BRANCH
+{ # try
+  box_out 'Git' &&
+  bash scripts/pull.sh $BRANCH &&
 
-box_out 'Build'
-bash scripts/build.sh $ENV
+  box_out 'Build' &&
+  bash scripts/build.sh $ENV &&
 
-box_out 'Docker'
-bash scripts/docker.sh $PREFIX/$PROJECT_NAME $TAG
+  box_out 'Docker' &&
+  bash scripts/docker.sh $PREFIX/$PROJECT_NAME $TAG &&
 
-box_out 'AWS'
-node scripts/aws.js -e $ENV -p $PROJECT_NAME -i $IMAGE_NAME
+  box_out 'AWS' &&
+  node scripts/aws.js -e $ENV -p $PROJECT_NAME -i $IMAGE_NAME &&
 
-box_out 'Project: '$PROJECT_NAME 'ENV: '$ENV 'Image: '$PROJECT_NAME:$TAG
+  box_out 'Project: '$PROJECT_NAME 'ENV: '$ENV 'Image: '$PROJECT_NAME:$TAG
+} || { # catch
+  box_out 'FAILED'
+}

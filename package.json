@@ -16,5 +16,8 @@
     "supertest": "^2.0.1",
     "supertest-promised": "^1.0.0",
     "yargs": "^6.3.0"
+  },
+  "dependencies": {
+    "global": "^4.3.1"
   }
 }
