@@ -1,16 +1,23 @@
 {
   "name": "smallfish_proxy",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": {
-    "url": "https://rporrinis:matr.071969@bitbucket.org/_smallfish/smallfish_proxy.git",
-    "type": "git"
+  "scripts": {
+    "start": "scripts/run.sh dev",
+    "stop": "scripts/destroy.sh",
+    "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/test.suite.js; npm stop"
   },
-  "author": "rporrinis <riccardo@smallfish.com>",
-  "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
+    "aws-sdk": "^2.6.15",
+    "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
     "del": "^2.2.2",
     "glob": "^7.1.1",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.1",
+    "supertest-promised": "^1.0.0",
     "yargs": "^6.3.0"
+  },
+  "dependencies": {
+    "global": "^4.3.1"
   }
 }

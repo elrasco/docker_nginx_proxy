@@ -9,5 +9,5 @@ module.exports = env => {
             proxy_pass		http://${env}services.sml-server.com:80/;
       			proxy_redirect		off;
           }
-    }`)
+    }`);
 };

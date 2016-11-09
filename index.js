@@ -1,6 +1,6 @@
 const fs = require('fs');
-const glob = require("glob")
-const del = require("del")
+const glob = require("glob");
+const del = require("del");
 const argv = require('yargs').argv;
 
 const DIST_DIR = './dist';
@@ -22,5 +22,5 @@ glob("templates/*.js", function(er, files) {
 
     const template = require('./' + file);
     flush(name(file), template(env));
-  })
-})
+  });
+});
