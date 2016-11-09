@@ -29,5 +29,9 @@ module.exports = env => (`
             proxy_pass		http://${env}services.sml-server.com:305;
       			proxy_redirect		off;
           }
+          location /marketplace {
+            proxy_pass		http://${env}services.sml-server.com:306;
+      			proxy_redirect		off;
+          }
   }
 `);
