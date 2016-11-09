@@ -17,6 +17,10 @@ module.exports = env => (`
             proxy_pass	  http://${env}services.internal.sml-server.com:1342/;
       			proxy_redirect		off;
           }
+          location /marketplace-api {
+            proxy_pass	  http://${env}services.internal.sml-server.com:1341/;
+      			proxy_redirect		off;
+          }
           location /mailfish {
             proxy_pass		http://${env}services.sml-server.com:302;
       			proxy_redirect		off;
