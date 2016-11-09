@@ -7,6 +7,7 @@
     "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/test.suite.js; npm stop"
   },
   "devDependencies": {
+    "aws-sdk": "^2.6.15",
     "bluebird": "^3.4.6",
     "chai": "^3.5.0",
     "del": "^2.2.2",
