@@ -13,6 +13,14 @@ module.exports = env => (`
             proxy_pass		http://${env}services.sml-server.com:301;
       			proxy_redirect		off;
           }
+          location /smallfish-auth {
+            proxy_pass	  http://${env}services.internal.sml-server.com:1343/;
+      			proxy_redirect		off;
+          }
+          location /smallfish-upload {
+            proxy_pass		http://${env}services.sml-server.com:82/;
+      			proxy_redirect		off;
+          }
           location /smallfish-api {
             proxy_pass	  http://${env}services.internal.sml-server.com:1342/;
       			proxy_redirect		off;
