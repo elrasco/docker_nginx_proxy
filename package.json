@@ -4,7 +4,7 @@
   "scripts": {
     "start": "scripts/run.sh dev",
     "stop": "scripts/destroy.sh",
-    "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/test.suite.js; npm stop"
+    "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/*.js; npm stop"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.15",
