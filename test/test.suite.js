@@ -59,4 +59,34 @@ describe('admin.smallfish.com', function() {
       token: token
     });
   });
+
+  it('/marketplace-api', function() {
+    return request.get({
+      url: '/marketplace-api/api/rest/asset',
+      host: 'admin.smallfish.com',
+      token: token
+    });
+  });
+
+  it('/mailfish', function() {
+    return request.get({
+      url: '/mailfish',
+      host: 'admin.smallfish.com',
+      expect: 303
+    });
+  });
+
+  it('/projects', function() {
+    return request.get({
+      url: '/projects',
+      host: 'admin.smallfish.com'
+    });
+  });
+
+  it('/marketplace', function() {
+    return request.get({
+      url: '/marketplace',
+      host: 'admin.smallfish.com'
+    });
+  });
 });
