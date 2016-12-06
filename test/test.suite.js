@@ -20,4 +20,20 @@ describe('admin.smallfish.com', function() {
     });
   });
 
+  it('/api', function() {
+    return ok({
+      url: '/api/auth/authenticated',
+      host: 'admin.smallfish.com',
+      status: 403
+    });
+  });
+
+  it('/smallfish-auth', function() {
+    return ok({
+      url: '/smallfish-auth/user?populate=roles',
+      host: 'admin.smallfish.com',
+      status: 403
+    });
+  });
+
 });
