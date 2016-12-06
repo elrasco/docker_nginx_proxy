@@ -4,7 +4,10 @@
   "scripts": {
     "start": "scripts/run.sh dev --not-testing",
     "stop": "scripts/destroy.sh",
-    "test": "scripts/run.sh dev --testing && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/*.js; npm stop"
+    "test": "scripts/run.sh dev --testing && sleep 1 && NODE_ENV=test ./node_modules/mocha/bin/mocha --reporter list test/*.js; npm stop",
+    "test:dev": "NODE_ENV=development ./node_modules/mocha/bin/mocha --reporter list test/*.js",
+    "test:stage": "NODE_ENV=stage ./node_modules/mocha/bin/mocha --reporter list test/*.js",
+    "test:prod": "NODE_ENV=production ./node_modules/mocha/bin/mocha --reporter list test/*.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.15",
