@@ -2,9 +2,9 @@
   "name": "smallfish_proxy",
   "version": "1.0.0",
   "scripts": {
-    "start": "scripts/run.sh dev",
+    "start": "scripts/run.sh dev --not-testing",
     "stop": "scripts/destroy.sh",
-    "test": "npm start && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/*.js; npm stop"
+    "test": "scripts/run.sh dev --testing && sleep 1 && ./node_modules/mocha/bin/mocha --reporter list test/*.js; npm stop"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.15",
