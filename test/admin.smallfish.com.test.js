@@ -2,6 +2,23 @@ const request = require('./testRequest');
 
 describe('admin.smallfish.com', function() {
 
+  describe('host', function(){
+
+    it('public', function(){
+      return request.get({
+        url: '/',
+        host: 'admin.smallfish.com'
+      });
+    });
+
+    it('internal', function(){
+      return request.get({
+        url: '/',
+        host: 'admin.sml-server.com'
+      });
+    });
+  });
+
   it('/', function() {
     return request.get({
       url: '/',
