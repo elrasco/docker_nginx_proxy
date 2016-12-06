@@ -10,7 +10,7 @@ const host = {
   test: (host) => 'dev.' + host,
   development: (host) => 'dev.' + host,
   stage: (host) => 'stage.' + host,
-  production: (host) => host,
+  production: (host) => host.replace(/^smallfish\.com/, 'www.smallfish.com')
 };
 
 module.exports = {
