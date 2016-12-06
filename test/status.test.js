@@ -8,5 +8,4 @@ describe('alive page', function() {
       host: 'any.host'
     });
   });
-
 });

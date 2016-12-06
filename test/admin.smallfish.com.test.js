@@ -2,22 +2,6 @@ const request = require('./testRequest');
 
 describe('admin.smallfish.com', function() {
 
-  let token;
-
-  before(function() {
-    return request.post({
-        url: '/api/auth/login',
-        host: 'admin.smallfish.com',
-        body: {
-          email: "luca.rasconi@smallfish.com",
-          password: "password"
-        }
-      })
-      .then(response => {
-        token = response.body.token;
-      });
-  });
-
   it('/', function() {
     return request.get({
       url: '/',
@@ -26,34 +10,30 @@ describe('admin.smallfish.com', function() {
   });
 
   it('/api', function() {
-    return request.get({
+    return request.options({
       url: '/api/auth/authenticated',
-      host: 'admin.smallfish.com',
-      token: token
+      host: 'admin.smallfish.com'
     });
   });
 
   it('/smallfish-auth', function() {
-    return request.get({
+    return request.options({
       url: '/smallfish-auth/user?populate=roles',
-      host: 'admin.smallfish.com',
-      token: token
+      host: 'admin.smallfish.com'
     });
   });
 
   it('/smallfish-api', function() {
-    return request.get({
+    return request.options({
       url: '/smallfish-api/api/rest/company',
-      host: 'admin.smallfish.com',
-      token: token
+      host: 'admin.smallfish.com'
     });
   });
 
   it('/marketplace-api', function() {
-    return request.get({
+    return request.options({
       url: '/marketplace-api/api/rest/asset',
-      host: 'admin.smallfish.com',
-      token: token
+      host: 'admin.smallfish.com'
     });
   });
 

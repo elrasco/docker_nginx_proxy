@@ -15,19 +15,16 @@ const host = {
 
 module.exports = {
   get: data => {
-    const token = data.token ? data.token : '';
     const expect = data.expect ? data.expect : 200;
     return request(proxy[process.env.NODE_ENV])
       .get(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
-      .set('Authorization', 'Bearer ' + token)
       .expect(expect);
   },
-  post: data => {
-    const status = data.status ? data.status : 200;
+  options: data => {
     return request(proxy[process.env.NODE_ENV])
-      .post(data.url)
+      .options(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
-      .send(data.body);
+      .expect(200);
   }
 };
