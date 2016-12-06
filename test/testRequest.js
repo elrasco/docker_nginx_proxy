@@ -13,10 +13,20 @@ const host = {
   production: (host) => host,
 };
 
-module.exports = data => {
-  const status = data.status ? data.status : 200;
-  return request(proxy[process.env.NODE_ENV])
-            .get(data.url)
-            .set('Host', host[process.env.NODE_ENV](data.host))
-            .expect(status);
+module.exports = {
+  get: data => {
+    const token = data.token ? data.token : '';
+    return request(proxy[process.env.NODE_ENV])
+      .get(data.url)
+      .set('Host', host[process.env.NODE_ENV](data.host))
+      .set('Authorization', 'Bearer ' + token)
+      .expect(200);
+  },
+  post: data => {
+    const status = data.status ? data.status : 200;
+    return request(proxy[process.env.NODE_ENV])
+      .post(data.url)
+      .set('Host', host[process.env.NODE_ENV](data.host))
+      .send(data.body);
+  }
 };

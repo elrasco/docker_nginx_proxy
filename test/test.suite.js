@@ -1,9 +1,9 @@
-const ok = require('./testRequest');
+const request = require('./testRequest');
 
 describe('alive page', function() {
 
   it('should be available to requests to default host', function() {
-    return ok({
+    return request.get({
       url: '/status/alive',
       host: 'any.host'
     });
@@ -13,27 +13,50 @@ describe('alive page', function() {
 
 describe('admin.smallfish.com', function() {
 
+  let token;
+
+  before(function() {
+    return request.post({
+        url: '/api/auth/login',
+        host: 'admin.smallfish.com',
+        body: {
+          email: "luca.rasconi@smallfish.com",
+          password: "password"
+        }
+      })
+      .then(response => {
+        token = response.body.token;
+      });
+  });
+
   it('/', function() {
-    return ok({
+    return request.get({
       url: '/',
       host: 'admin.smallfish.com'
     });
   });
 
   it('/api', function() {
-    return ok({
+    return request.get({
       url: '/api/auth/authenticated',
       host: 'admin.smallfish.com',
-      status: 403
+      token: token
     });
   });
 
   it('/smallfish-auth', function() {
-    return ok({
+    return request.get({
       url: '/smallfish-auth/user?populate=roles',
       host: 'admin.smallfish.com',
-      status: 403
+      token: token
     });
   });
 
+  it('/smallfish-api', function() {
+    return request.get({
+      url: '/smallfish-api/api/rest/company',
+      host: 'admin.smallfish.com',
+      token: token
+    });
+  });
 });
