@@ -1,13 +1,23 @@
-const on = require('./testRequest');
+const ok = require('./testRequest');
 
 describe('alive page', function() {
 
   it('should be available to requests to default host', function() {
-    return on({
+    return ok({
       url: '/status/alive',
-      host: 'any.host',
-      expect: 200
+      host: 'any.host'
     });
   });
-  
+
+});
+
+describe('admin.smallfish.com', function() {
+
+  it('/', function() {
+    return ok({
+      url: '/',
+      host: 'admin.smallfish.com'
+    });
+  });
+
 });
