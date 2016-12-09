@@ -5,8 +5,12 @@ module.exports = env => (
           server_name ${env}preview.smallfish.com;
           server_name ${env}preview.sml-server.com;
 
-          location / {
-            proxy_pass		http://${env}services.sml-server.com:303/preview/;
+          location /p {
+            proxy_pass		http://${env}services.sml-server.com:303/p/;
+            proxy_redirect		off;
+          }
+          location /videohub {
+            proxy_pass		http://${env}services.sml-server.com:303;
             proxy_redirect		off;
           }
   }
