@@ -2,8 +2,8 @@ module.exports = env => (
   `
   server {
           listen 80;
-          server_name ${env}preview.smallfish.com;
-          server_name ${env}preview.sml-server.com;
+          server_name ${env}videos.smallfish.com;
+          server_name ${env}videos.sml-server.com;
 
           location /p {
             proxy_pass		http://${env}services.sml-server.com:303/p/;
