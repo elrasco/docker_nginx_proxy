@@ -33,6 +33,10 @@ module.exports = env => (`
             proxy_pass		http://${env}services.sml-server.com:302;
       			proxy_redirect		off;
           }
+          location /videohub {
+            proxy_pass		http://${env}services.sml-server.com:303;
+            proxy_redirect		off;
+          }
           location /projects {
             proxy_pass		http://${env}services.sml-server.com:305;
       			proxy_redirect		off;
