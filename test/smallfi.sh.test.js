@@ -1,11 +1,11 @@
 const request = require('./testRequest');
 
-describe('m.smallfish.com', function() {
+describe('smallfi.sh', function() {
 
   it('/', function() {
-    return request.get({
-      url: '/',
-      host: 'm.smallfish.com'
+    return request.options({
+      url: '/any',
+      host: 'smallfi.sh'
     });
   });
 

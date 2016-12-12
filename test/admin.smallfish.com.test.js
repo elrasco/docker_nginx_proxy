@@ -54,6 +54,13 @@ describe('admin.smallfish.com', function() {
     });
   });
 
+  it('/smallfish-upload', function() {
+    return request.options({
+      url: '/smallfish-upload/file/getSignedUrl',
+      host: 'upload.smallfish.com'
+    });
+  });
+
   it('/mailfish', function() {
     return request.get({
       url: '/mailfish',
@@ -72,6 +79,13 @@ describe('admin.smallfish.com', function() {
   it('/marketplace', function() {
     return request.get({
       url: '/marketplace',
+      host: 'admin.smallfish.com'
+    });
+  });
+
+  it('/videohub', function() {
+    return request.get({
+      url: '/videohub',
       host: 'admin.smallfish.com'
     });
   });
