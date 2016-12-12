@@ -4,8 +4,8 @@ describe('reverse proxy configuration', function(){
 
   it('gzip should be enabled', function(){
     return request.get({
-      url: '/status/alive',
-      host: 'any.host'
+      url: '/marketplace-api/api/rest/format',
+      host: 'admin.smallfish.com'
     })
     .expect('Content-Encoding', 'gzip');
   });
