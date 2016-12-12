@@ -25,6 +25,7 @@ module.exports = {
     return request(proxy[process.env.NODE_ENV])
       .options(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
-      .expect(200);
+      .expect(200)
+      .expect('x-powered-by', /Sails/);
   }
 };
