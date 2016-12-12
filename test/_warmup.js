@@ -7,7 +7,7 @@ function retry(what) {
     });
 }
 
-it('proxy should be warmed up', function() {
+it('proxy should be ready to rumble', function() {
   return retry(() => {
     return promise.delay(2000).then(() => request
       .get({
