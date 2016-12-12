@@ -4,10 +4,12 @@
   "scripts": {
     "start": "scripts/run.sh dev",
     "stop": "scripts/destroy.sh",
-    "test": "scripts/run.sh dev && NODE_ENV=test mocha --reporter list test/_warmup.js -t 60000 && NODE_ENV=test mocha --reporter list -t 5000 test/*.test.js; npm stop",
-    "test:dev": "NODE_ENV=development mocha --reporter list -t 5000 test/*.test.js",
-    "test:stage": "NODE_ENV=stage mocha --reporter list -t 5000 test/*.test.js",
-    "test:prod": "NODE_ENV=production mocha --reporter list -t 5000 test/*.test.js"
+    "test": "npm run -s start && NODE_ENV=test npm run -s test:runner -- test/_warmup.js -t 60000 && NODE_ENV=test npm run -s test:unit; npm run -s stop",
+    "test:dev": "NODE_ENV=development npm run -s test:unit",
+    "test:stage": "NODE_ENV=stage npm run -s test:unit",
+    "test:prod": "NODE_ENV=production npm run -s test:unit",
+    "test:unit": "npm run test:runner -- test/*.test.js -t 5000",
+    "test:runner": "mocha --reporter list"
   },
   "dependencies": {
     "aws-sdk": "2.6.15",
