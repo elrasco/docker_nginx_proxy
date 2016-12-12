@@ -4,7 +4,7 @@
   "scripts": {
     "start": "scripts/run.sh dev",
     "stop": "scripts/destroy.sh",
-    "test": "scripts/run.sh dev && NODE_ENV=test mocha --reporter list -t 60000 test/_warmup.js && NODE_ENV=test mocha --reporter list -t 5000 test/*.test.js; npm stop",
+    "test": "scripts/run.sh dev && NODE_ENV=test mocha --reporter list test/_warmup.js -t 60000 && NODE_ENV=test mocha --reporter list -t 5000 test/*.test.js; npm stop",
     "test:dev": "NODE_ENV=development mocha --reporter list -t 5000 test/*.test.js",
     "test:stage": "NODE_ENV=stage mocha --reporter list -t 5000 test/*.test.js",
     "test:prod": "NODE_ENV=production mocha --reporter list -t 5000 test/*.test.js"

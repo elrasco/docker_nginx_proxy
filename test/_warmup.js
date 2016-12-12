@@ -9,7 +9,7 @@ function retry(what) {
 
 it('proxy should be warmed up', function() {
   return retry(() => {
-    return promise.delay(1000).then(() => request
+    return promise.delay(2000).then(() => request
       .get({
         url: '/status/alive',
         host: 'any.host'
