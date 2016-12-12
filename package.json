@@ -2,12 +2,12 @@
   "name": "smallfish_proxy",
   "version": "1.0.0",
   "scripts": {
-    "start": "scripts/run.sh dev --not-testing",
+    "start": "scripts/run.sh dev",
     "stop": "scripts/destroy.sh",
-    "test": "scripts/run.sh dev --testing && sleep 5 && NODE_ENV=test ./node_modules/mocha/bin/mocha --reporter list -t 5000 test/*.js; npm stop",
-    "test:dev": "NODE_ENV=development ./node_modules/mocha/bin/mocha --reporter list -t 5000 test/*.js",
-    "test:stage": "NODE_ENV=stage ./node_modules/mocha/bin/mocha --reporter list -t 5000 test/*.js",
-    "test:prod": "NODE_ENV=production ./node_modules/mocha/bin/mocha --reporter list -t 5000 test/*.js"
+    "test": "scripts/run.sh dev && NODE_ENV=test mocha --reporter list -t 60000 test/_warmup.js && NODE_ENV=test mocha --reporter list -t 5000 test/*.test.js; npm stop",
+    "test:dev": "NODE_ENV=development mocha --reporter list -t 5000 test/*.test.js",
+    "test:stage": "NODE_ENV=stage mocha --reporter list -t 5000 test/*.test.js",
+    "test:prod": "NODE_ENV=production mocha --reporter list -t 5000 test/*.test.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.15",
@@ -17,7 +17,7 @@
     "glob": "^7.1.1",
     "mocha": "^3.1.2",
     "supertest": "^2.0.1",
-    "supertest-promised": "^1.0.0",
+    "supertest-as-promised": "^4.0.2",
     "yargs": "^6.3.0"
   },
   "dependencies": {

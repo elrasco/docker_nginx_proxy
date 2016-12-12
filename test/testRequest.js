@@ -1,4 +1,4 @@
-const request = require('supertest-promised');
+const request = require('supertest-as-promised');
 
 const proxy = {
   test: 'http://localhost',
