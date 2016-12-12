@@ -19,12 +19,14 @@ module.exports = {
     return request(proxy[process.env.NODE_ENV])
       .get(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
+      .set('Accept-Encoding', 'gzip')
       .expect(expect);
   },
   options: data => {
     return request(proxy[process.env.NODE_ENV])
       .options(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
+      .set('Accept-Encoding', 'gzip')
       .expect(200)
       .expect('x-powered-by', /Sails/);
   }
