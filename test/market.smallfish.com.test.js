@@ -1,8 +1,9 @@
 const request = require('./testRequest');
+const assert = require('assert');
 
-describe('market.smallfish.com', function(){
+describe('market.smallfish.com', function() {
 
-  it('/', function(){
+  it('/', function() {
     return request.get({
       url: '/',
       host: 'market.smallfish.com'
@@ -21,5 +22,12 @@ describe('market.smallfish.com', function(){
       url: '/file/getSignedUrl',
       host: 'market.smallfish.com'
     });
+  });
+
+  it('should expose a socket.io endpoint', function() {
+    return request.socket({
+        host: 'market.smallfish.com'
+      })
+      .then(socket => { assert(socket.connected); });
   });
 });

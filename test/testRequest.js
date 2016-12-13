@@ -1,4 +1,7 @@
 const request = require('supertest-as-promised');
+const promise = require('bluebird');
+const sails = require('sails.io.js');
+const sockets = require('socket.io-client');
 
 const proxy = {
   test: 'http://localhost',
@@ -11,6 +14,13 @@ const host = {
   development: (host) => 'dev.' + host,
   stage: (host) => 'stage.' + host,
   production: (host) => host.replace(/^smallfish\.com/, 'www.smallfish.com')
+};
+const webSocketAsUsedInProduction = () => {
+  const io = sails(sockets);
+  io.sails.autoConnect = false;
+  io.sails.environment = 'production';
+  io.sails.transports = ['websocket'];
+  return io;
 };
 
 module.exports = {
@@ -29,5 +39,17 @@ module.exports = {
       .set('Accept-Encoding', 'gzip')
       .expect(200)
       .expect('x-powered-by', /Sails/);
+  },
+  socket: data => {
+    return new promise(function(resolve) {
+      const socket = webSocketAsUsedInProduction().sails.connect(proxy[process.env.NODE_ENV], {
+        initialConnectionHeaders: {
+          Host: host[process.env.NODE_ENV](data.host)
+        }
+      });
+      socket.on('connect', function() {
+        resolve(this);
+      });
+    });
   }
 };
