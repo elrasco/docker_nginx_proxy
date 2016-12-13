@@ -1,11 +1,16 @@
 const request = require('./testRequest');
 
-describe('api.smallfish.com', function() {
+test('api.smallfish.com');
+test('api.sml-server.com');
 
-  it('/', function() {
-    return request.options({
-      url: '/api/company',
-      host: 'api.smallfish.com'
+function test(host) {
+  describe(host, function() {
+
+    it('/', function() {
+      return request.options({
+        url: '/api/company',
+        host: host
+      });
     });
   });
-});
+}

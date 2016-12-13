@@ -1,92 +1,81 @@
 const request = require('./testRequest');
 
-describe('admin.smallfish.com', function() {
+test('admin.smallfish.com');
+test('admin.sml-server.com');
 
-  describe('host', function(){
+function test(host) {
 
-    it('public', function(){
+  describe(host, function() {
+
+    it('/', function() {
       return request.get({
         url: '/',
-        host: 'admin.smallfish.com'
+        host: host
       });
     });
 
-    it('internal', function(){
+    it('/api', function() {
+      return request.options({
+        url: '/api/auth/authenticated',
+        host: host
+      });
+    });
+
+    it('/smallfish-auth', function() {
+      return request.options({
+        url: '/smallfish-auth/user?populate=roles',
+        host: host
+      });
+    });
+
+    it('/smallfish-api', function() {
+      return request.options({
+        url: '/smallfish-api/api/rest/company',
+        host: host
+      });
+    });
+
+    it('/marketplace-api', function() {
+      return request.options({
+        url: '/marketplace-api/api/rest/asset',
+        host: host
+      });
+    });
+
+    it('/smallfish-upload', function() {
+      return request.options({
+        url: '/smallfish-upload/file/getSignedUrl',
+        host: host
+      });
+    });
+
+    it('/mailfish', function() {
       return request.get({
-        url: '/',
-        host: 'admin.sml-server.com'
+        url: '/mailfish',
+        host: host,
+        expect: 303
+      });
+    });
+
+    it('/projects', function() {
+      return request.get({
+        url: '/projects',
+        host: host
+      });
+    });
+
+    it('/marketplace', function() {
+      return request.get({
+        url: '/marketplace',
+        host: host
+      });
+    });
+
+    it('/videohub', function() {
+      return request.get({
+        url: '/videohub',
+        host: host
       });
     });
   });
-
-  it('/', function() {
-    return request.get({
-      url: '/',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/api', function() {
-    return request.options({
-      url: '/api/auth/authenticated',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/smallfish-auth', function() {
-    return request.options({
-      url: '/smallfish-auth/user?populate=roles',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/smallfish-api', function() {
-    return request.options({
-      url: '/smallfish-api/api/rest/company',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/marketplace-api', function() {
-    return request.options({
-      url: '/marketplace-api/api/rest/asset',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/smallfish-upload', function() {
-    return request.options({
-      url: '/smallfish-upload/file/getSignedUrl',
-      host: 'upload.smallfish.com'
-    });
-  });
-
-  it('/mailfish', function() {
-    return request.get({
-      url: '/mailfish',
-      host: 'admin.smallfish.com',
-      expect: 303
-    });
-  });
-
-  it('/projects', function() {
-    return request.get({
-      url: '/projects',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/marketplace', function() {
-    return request.get({
-      url: '/marketplace',
-      host: 'admin.smallfish.com'
-    });
-  });
-
-  it('/videohub', function() {
-    return request.get({
-      url: '/videohub',
-      host: 'admin.smallfish.com'
-    });
-  });
-});
+}

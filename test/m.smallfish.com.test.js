@@ -1,12 +1,18 @@
 const request = require('./testRequest');
 
-describe('m.smallfish.com', function() {
+test('m.smallfish.com');
+test('m.sml-server.com');
 
-  it('/', function() {
-    return request.get({
-      url: '/',
-      host: 'm.smallfish.com'
+function test(host) {
+
+  describe(host, function() {
+
+    it('/', function() {
+      return request.get({
+        url: '/',
+        host: host
+      });
     });
-  });
 
-});
+  });
+}
