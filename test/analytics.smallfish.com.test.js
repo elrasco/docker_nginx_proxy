@@ -1,7 +1,7 @@
 const request = require('./testRequest');
 
-//test('analytics.smallfish.com');
-//test('analytics.sml-server.com');
+test('analytics.smallfish.com');
+test('analytics.sml-server.com');
 
 function test(host) {
   describe(host, function() {
