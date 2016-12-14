@@ -17,15 +17,15 @@ function test(host) {
     });
 
     it('/marketplace-be', function() {
-      return request.get({
-        url: '/api/format/find',
+      return request.options({
+        url: '/marketplace-be/api/format/find',
         host: host
       });
     });
 
     it('/smallfish-upload', function() {
-      return request.get({
-        url: '/file/getSignedUrl',
+      return request.options({
+        url: '/smallfish-upload/file/getSignedUrl',
         host: host
       });
     });
