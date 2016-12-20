@@ -8,7 +8,6 @@ module.exports = env => (`
 
           location / {
             set $backend "http://${env}services.sml-server.com:300";
-            rewrite ^/(.*) /$1 break;
             proxy_pass  $backend;
             proxy_redirect  off;
           }
@@ -48,19 +47,16 @@ module.exports = env => (`
           }
           location /videohub {
             set $backend "http://${env}services.sml-server.com:303";
-            rewrite ^/videohub(.*) /$1 break;
             proxy_pass  $backend;
       			proxy_redirect		off;
           }
           location /projects {
             set $backend "http://${env}services.sml-server.com:305";
-            rewrite ^/projects(.*) /$1 break;
             proxy_pass  $backend;
             proxy_redirect		off;
           }
           location /marketplace {
             set $backend "http://${env}services.sml-server.com:306";
-            rewrite ^/marketplace(.*) /$1 break;
             proxy_pass  $backend;
             proxy_redirect		off;
           }
