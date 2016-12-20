@@ -21,11 +21,19 @@ const host = {
 };
 
 module.exports = {
+  post: data => {
+    return request(proxy[process.env.NODE_ENV])
+      .post(data.url)
+      .set('Authorization', `Bearer ${data.token}`)
+      .set('Host', host[process.env.NODE_ENV](data.host))
+      .send(data.body);
+  },
   get: data => {
     const expect = data.expect ? data.expect : 200;
     return request(proxy[process.env.NODE_ENV])
       .get(data.url)
       .set('Host', host[process.env.NODE_ENV](data.host))
+      .set('Authorization', `Bearer ${data.token}`)
       .set('Accept-Encoding', 'gzip')
       .expect(expect);
   },

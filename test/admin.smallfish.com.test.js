@@ -7,6 +7,23 @@ function test(host) {
 
   describe(host, function() {
 
+    let auth = '';
+
+    before(function() {
+      return request.post({
+          url: '/api/auth/login',
+          host: host,
+          body: {
+            email: "luca.rasconi@smallfish.com",
+            password: "password"
+          }
+        })
+        .then(response => response.body.token)
+        .then(token => {
+          auth = token;
+        });
+    });
+
     it('/', function() {
       return request.get({
         url: '/',
@@ -15,37 +32,42 @@ function test(host) {
     });
 
     it('/api', function() {
-      return request.options({
+      return request.get({
         url: '/api/auth/authenticated',
-        host: host
+        host: host,
+        token: auth
       });
     });
 
     it('/smallfish-auth', function() {
-      return request.options({
+      return request.get({
         url: '/smallfish-auth/user?populate=roles',
-        host: host
+        host: host,
+        token: auth
       });
     });
 
     it('/smallfish-api', function() {
-      return request.options({
+      return request.get({
         url: '/smallfish-api/api/rest/company',
-        host: host
+        host: host,
+        token: auth
       });
     });
 
     it('/marketplace-api', function() {
-      return request.options({
+      return request.get({
         url: '/marketplace-api/api/rest/asset',
-        host: host
+        host: host,
+        token: auth
       });
     });
 
     it('/smallfish-upload', function() {
-      return request.options({
+      return request.post({
         url: '/smallfish-upload/file/getSignedUrl',
-        host: host
+        host: host,
+        token: auth
       });
     });
 

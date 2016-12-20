@@ -14,7 +14,6 @@ module.exports = env => (`
           }
           location /api {
             set $backend "http://${env}services.sml-server.com:301";
-            rewrite ^/api(.*) /$1 break;
             proxy_pass  $backend;
             proxy_redirect  off;
           }
