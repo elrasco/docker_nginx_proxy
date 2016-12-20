@@ -42,8 +42,9 @@ module.exports = env => (`
             proxy_redirect  off;
           }
           location /mailfish {
-            proxy_pass  http://${env}services.sml-server.com:302;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:302";
+            proxy_pass  $backend;
+            proxy_redirect  off;
           }
           location /videohub {
             set $backend "http://${env}services.sml-server.com:303";
