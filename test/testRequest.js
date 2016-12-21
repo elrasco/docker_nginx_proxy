@@ -37,7 +37,7 @@ const send = data => {
 module.exports = {
 
   post: data => send(data).post(),
-
+  options: data => send(data).options(),
   api: data => send(data).get().expect('x-powered-by', /Sails/),
   frontend: data => send(data).get(),
 

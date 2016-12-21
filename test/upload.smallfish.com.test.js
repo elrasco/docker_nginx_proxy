@@ -9,7 +9,7 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      return request.post({
+      return request.options({
         url: '/file/getSignedUrl',
         host: host
       });

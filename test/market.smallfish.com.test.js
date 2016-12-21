@@ -24,7 +24,7 @@ function test(host) {
     });
 
     it('/smallfish-upload', function() {
-      return request.post({
+      return request.options({
         url: '/smallfish-upload/file/getSignedUrl',
         host: host
       });
