@@ -7,7 +7,7 @@ io.sails.environment = 'production';
 io.sails.transports = ['websocket'];
 
 const inEnvironment = object => object[process.env.NODE_ENV];
-const proxy = () => inEnvironment({
+const toProxy = () => inEnvironment({
   test: 'http://localhost',
   development: 'http://dev.proxy.sml-server.com',
   stage: 'http://stage.proxy.sml-server.com',
@@ -18,38 +18,30 @@ const host = host => inEnvironment({
   development: 'dev.' + host,
   stage: 'stage.' + host,
   production: host.replace(/^smallfish\.com/, 'www.smallfish.com')
-                  .replace(/^sml-server\.com/, 'www.sml-server.com')
+    .replace(/^sml-server\.com/, 'www.sml-server.com')
 });
+const send = data => {
+  const theRequest = request(toProxy());
+  const using = method => method(data.url)
+    .set('Host', host(data.host))
+    .set('Authorization', `Bearer ${data.token}`)
+    .set('Accept-Encoding', 'gzip');
+  return {
+    post: () => using(theRequest.post).send(data.body),
+    get: () => using(theRequest.get).expect(200),
+    options: () => using(theRequest.options)
+      .expect(200)
+      .expect('x-powered-by', /Sails/)
+  };
+};
 
 module.exports = {
-  post: data => {
-    return request(proxy())
-      .post(data.url)
-      .set('Host', host(data.host))
-      .set('Authorization', `Bearer ${data.token}`)
-      .set('Accept-Encoding', 'gzip')
-      .send(data.body);
-  },
-  get: data => {
-    return request(proxy())
-      .get(data.url)
-      .set('Host', host(data.host))
-      .set('Authorization', `Bearer ${data.token}`)
-      .set('Accept-Encoding', 'gzip')
-      .expect(200);
-  },
-  options: data => {
-    return request(proxy())
-      .options(data.url)
-      .set('Host', host(data.host))
-      .set('Authorization', `Bearer ${data.token}`)
-      .set('Accept-Encoding', 'gzip')
-      .expect(200)
-      .expect('x-powered-by', /Sails/);
-  },
+  post: data => send(data).post(),
+  get: data => send(data).get(),
+  options: data => send(data).options(),
   socket: data => {
     return new promise(function(resolve) {
-      const socket = io.sails.connect(proxy(), {
+      const socket = io.sails.connect(toProxy(), {
         initialConnectionHeaders: {
           Host: host(data.host)
         }
