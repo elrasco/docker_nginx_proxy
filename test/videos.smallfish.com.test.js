@@ -7,14 +7,14 @@ function test(host) {
   describe(host, function() {
 
     it('/p', function() {
-      return request.get({
+      return request.frontend({
         url: '/p/',
         host: host
       });
     });
 
     it('/videohub', function() {
-      return request.get({
+      return request.frontend({
         url: '/videohub/',
         host: host
       });

@@ -25,21 +25,21 @@ const send = data => {
   const using = method => method(data.url)
     .set('Host', host(data.host))
     .set('Authorization', `Bearer ${global.auth}`)
-    .set('Accept-Encoding', 'gzip');
+    .set('Accept-Encoding', 'gzip')
+    .redirects(1);
   return {
     post: () => using(theRequest.post).send(data.body),
     get: () => using(theRequest.get).expect(200),
-    options: () => using(theRequest.options)
-      .expect(200)
-      .expect('x-powered-by', /Sails/)
+    options: () => using(theRequest.options).expect(200)
   };
 };
 
 module.exports = {
 
   post: data => send(data).post(),
-  get: data => send(data).get(),
-  options: data => send(data).options(),
+
+  api: data => send(data).get().expect('x-powered-by', /Sails/),
+  frontend: data => send(data).get(),
 
   socket: data => {
     return new promise(function(resolve) {

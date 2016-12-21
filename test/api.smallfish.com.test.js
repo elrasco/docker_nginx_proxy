@@ -8,7 +8,7 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      return request.get({
+      return request.api({
         url: '/api/format/BySections',
         host: host
       });

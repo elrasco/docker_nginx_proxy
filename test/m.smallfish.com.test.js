@@ -8,7 +8,7 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      return request.get({
+      return request.frontend({
         url: '/',
         host: host
       });

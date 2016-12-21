@@ -12,7 +12,7 @@ const randomString = function(length) {
 describe('reverse proxy configuration', function() {
 
   it('gzip should be enabled', function() {
-    return request.get({
+    return request.api({
         url: '/marketplace-api/api/rest/format',
         host: 'admin.smallfish.com'
       })
@@ -21,7 +21,7 @@ describe('reverse proxy configuration', function() {
 
   it('should handle a very long url', function() {
     const veryLongString = randomString(8000);
-    return request.get({
+    return request.frontend({
       url: `/?parameter=${veryLongString}`,
       host: 'smallfish.com'
     });

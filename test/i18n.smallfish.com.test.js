@@ -8,7 +8,7 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      return request.options({
+      return request.api({
         url: '/api/translations/smallfish?lang=en',
         host: host
       });

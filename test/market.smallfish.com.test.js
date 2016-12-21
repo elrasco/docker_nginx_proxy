@@ -10,14 +10,14 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      return request.get({
+      return request.frontend({
         url: '/',
         host: host
       });
     });
 
     it('/marketplace-be', function() {
-      return request.get({
+      return request.api({
         url: '/marketplace-be/api/format/BySections',
         host: host
       });
