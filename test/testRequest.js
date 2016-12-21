@@ -24,7 +24,7 @@ const send = data => {
   const theRequest = request(toProxy());
   const using = method => method(data.url)
     .set('Host', host(data.host))
-    .set('Authorization', `Bearer ${data.token}`)
+    .set('Authorization', `Bearer ${global.auth}`)
     .set('Accept-Encoding', 'gzip');
   return {
     post: () => using(theRequest.post).send(data.body),
@@ -36,9 +36,11 @@ const send = data => {
 };
 
 module.exports = {
+
   post: data => send(data).post(),
   get: data => send(data).get(),
   options: data => send(data).options(),
+
   socket: data => {
     return new promise(function(resolve) {
       const socket = io.sails.connect(toProxy(), {

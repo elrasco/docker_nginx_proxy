@@ -8,7 +8,7 @@
     "test:dev": "NODE_ENV=development npm run -s test:unit",
     "test:stage": "NODE_ENV=stage npm run -s test:unit",
     "test:prod": "NODE_ENV=production npm run -s test:unit",
-    "test:unit": "npm run test:runner -- test/*.test.js -t 5000",
+    "test:unit": "npm run test:runner -- test/_fixture.setup.js test/*.test.js -t 5000",
     "test:runner": "mocha --reporter list"
   },
   "dependencies": {

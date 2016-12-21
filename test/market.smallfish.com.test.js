@@ -17,14 +17,14 @@ function test(host) {
     });
 
     it('/marketplace-be', function() {
-      return request.options({
-        url: '/marketplace-be/api/format/find',
+      return request.get({
+        url: '/marketplace-be/api/format/BySections',
         host: host
       });
     });
 
     it('/smallfish-upload', function() {
-      return request.options({
+      return request.post({
         url: '/smallfish-upload/file/getSignedUrl',
         host: host
       });

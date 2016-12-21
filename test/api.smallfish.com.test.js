@@ -4,11 +4,12 @@ test('api.smallfish.com');
 test('api.sml-server.com');
 
 function test(host) {
+
   describe(host, function() {
 
     it('/', function() {
-      return request.options({
-        url: '/api/company',
+      return request.get({
+        url: '/api/format/BySections',
         host: host
       });
     });
