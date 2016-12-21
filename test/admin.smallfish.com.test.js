@@ -73,9 +73,8 @@ function test(host) {
 
     it('/mailfish', function() {
       return request.get({
-        url: '/mailfish',
-        host: host,
-        expect: 303
+        url: '/mailfish/',
+        host: host
       });
     });
 
