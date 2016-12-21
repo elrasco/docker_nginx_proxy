@@ -4,8 +4,6 @@ module.exports = env => (`
           server_name ${env}admin.smallfish.com;
           server_name ${env}admin.sml-server.com;
 
-          resolver 172.31.0.2;
-
           location / {
             set $backend "http://${env}services.sml-server.com:300";
             proxy_pass  $backend;
