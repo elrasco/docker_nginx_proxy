@@ -6,7 +6,8 @@ module.exports = env => (
           server_name ${env}analytics.sml-server.com;
 
           location / {
-            proxy_pass		http://${env}services.sml-server.com:85;
+            set $backend "http://${env}services.sml-server.com:85";
+            proxy_pass  $backend;
             proxy_redirect		off;
           }
   }
