@@ -3,6 +3,7 @@ module.exports = env => {
   return (`server {
           listen 80;
           server_name ${env}fuguplay.com;
+          server_name ${env}fuguplay.sml-server.com;
 
           location / {
             set $backend "http://52.210.144.140:${port}";

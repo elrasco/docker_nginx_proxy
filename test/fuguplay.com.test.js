@@ -1,11 +1,16 @@
 const request = require('./testRequest');
 
-describe('fuguplay.com', function() {
-  it('/', function() {
-    return request.frontend({
-        url: '/',
-        host: 'fuguplay.com'
-      })
-      .expect(200);
+test('fuguplay.com');
+test('fuguplay.sml-server.com');
+
+function test(host) {
+  describe(host, function() {
+    it('/', function() {
+      return request.frontend({
+          url: '/',
+          host
+        })
+        .expect(200);
+    });
   });
-});
+}
