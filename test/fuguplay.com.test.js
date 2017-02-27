@@ -27,5 +27,12 @@ function test(host) {
         })
         .expect(/Fuguplay/);
     });
+
+    it('/landing/favicon.ico', function() {
+      return request.frontend({
+          url: '/landing/favicon.ico',
+          host
+        });
+    });
   });
 }

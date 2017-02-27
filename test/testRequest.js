@@ -29,7 +29,7 @@ const send = data => {
     .redirects(1);
   return {
     post: () => using(theRequest.post).send(data.body),
-    get: () => using(theRequest.get),
+    get: () => using(theRequest.get).expect(200),
     options: () => using(theRequest.options).expect(200)
   };
 };
