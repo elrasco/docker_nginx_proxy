@@ -18,6 +18,9 @@ module.exports = env => {
             rewrite ^/landing(.*js|.*ico) $1 break;
             rewrite ^/landing(.*)/$ $1/ break;
             rewrite ^/landing(.*)$ /landing$1/ permanent;
+            proxy_hide_header x-amz-id-2;
+            proxy_hide_header x-amz-request-id;
+            proxy_hide_header x-amz-version-id;
             proxy_pass  $backend;
       			proxy_redirect		off;
           }
