@@ -20,7 +20,7 @@ function test(host) {
         .expect(/Fuguplay/);
     });
 
-    it('/landing/it', function() {
+    xit('/landing/it', function() {
       return request.frontend({
           url: '/landing/it',
           host
