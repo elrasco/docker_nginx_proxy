@@ -1,5 +1,7 @@
 module.exports = env => {
   const port = env === '' ? 80 : 81;
+  const envPrefix = env === '' ? 'prod' : env.replace('\.', '');
+
   return (`server {
           listen 80;
           server_name ${env}fuguplay.com;
@@ -12,7 +14,7 @@ module.exports = env => {
           }
 
           location /landing {
-            set $backend "http://dev-fugu-landing.s3-website-us-east-1.amazonaws.com";
+            set $backend "http://${envPrefix}-fugu-landing.s3-website-us-east-1.amazonaws.com";
             rewrite ^/landing(.*js|.*ico) $1 break;
             rewrite ^/landing(.*)/$ $1/ break;
             rewrite ^/landing(.*)$ /landing$1/ permanent;
