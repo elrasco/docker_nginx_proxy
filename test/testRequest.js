@@ -29,17 +29,18 @@ const send = data => {
     .redirects(1);
   return {
     post: () => using(theRequest.post).send(data.body),
-    get: () => using(theRequest.get).expect(200),
-    options: () => using(theRequest.options).expect(200)
+    get: () => using(theRequest.get),
+    options: () => using(theRequest.options)
   };
 };
 
 module.exports = {
 
   post: data => send(data).post(),
-  options: data => send(data).options(),
-  api: data => send(data).get().expect('x-powered-by', /Sails/),
-  frontend: data => send(data).get(),
+  options: data => send(data).options().expect(200),
+  api: data => send(data).get().expect(200).expect('x-powered-by', /Sails/),
+  frontend: data => send(data).get().expect(200),
+  notFound: data => send(data).get().expect(404),
 
   socket: data => {
     return new promise(function(resolve) {
