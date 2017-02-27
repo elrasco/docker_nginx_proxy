@@ -9,8 +9,23 @@ function test(host) {
       return request.frontend({
           url: '/',
           host
+        });
+    });
+
+    it('/landing/it/', function() {
+      return request.frontend({
+          url: '/landing/it/',
+          host
         })
-        .expect(200);
+        .expect(/Fuguplay/);
+    });
+
+    it('/landing/it', function() {
+      return request.frontend({
+          url: '/landing/it',
+          host
+        })
+        .expect(/Fuguplay/);
     });
   });
 }

@@ -1,4 +1,4 @@
-const request = require('supertest-as-promised');
+const request = require('supertest');
 const promise = require('bluebird');
 
 const io = require('sails.io.js')(require('socket.io-client'));
@@ -29,7 +29,7 @@ const send = data => {
     .redirects(1);
   return {
     post: () => using(theRequest.post).send(data.body),
-    get: () => using(theRequest.get).expect(200),
+    get: () => using(theRequest.get),
     options: () => using(theRequest.options).expect(200)
   };
 };

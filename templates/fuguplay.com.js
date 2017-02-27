@@ -10,5 +10,13 @@ module.exports = env => {
             proxy_pass  $backend;
             proxy_redirect		off;
           }
+
+          location /landing {
+            set $backend "http://dev-fugu-landing.s3-website-us-east-1.amazonaws.com";
+            rewrite ^/landing(.*)/$ $1/ break;
+            rewrite ^/landing(.*)$ $1/ break;
+            proxy_pass  $backend;
+      			proxy_redirect		off;
+          }
   }`);
 };

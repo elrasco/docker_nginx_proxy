@@ -19,8 +19,7 @@
     "mocha": "3.1.2",
     "sails.io.js": "1.1.4",
     "socket.io-client": "1.7.2",
-    "supertest": "2.0.1",
-    "supertest-as-promised": "4.0.2",
+    "supertest": "3.0.0",
     "yargs": "6.3.0"
   }
 }
