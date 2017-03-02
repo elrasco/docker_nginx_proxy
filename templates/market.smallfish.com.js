@@ -26,7 +26,7 @@ module.exports = env => (`
             }
 
             location /socket.io {
-              set $backend http://${env}live.smallfish.com;
+              set $backend http://${env}live.sml-server.com;
               proxy_pass  $backend;
               proxy_http_version 1.1;
               proxy_set_header Upgrade $http_upgrade;
