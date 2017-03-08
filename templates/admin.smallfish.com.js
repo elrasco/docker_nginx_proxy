@@ -45,5 +45,9 @@ module.exports = env => (`
             proxy_pass		http://${env}services.sml-server.com:306;
       			proxy_redirect		off;
           }
+          location /users {
+            proxy_pass		http://${env}services.sml-server.com:307;
+      			proxy_redirect		off;
+          }
   }
 `);
