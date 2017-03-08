@@ -58,5 +58,10 @@ module.exports = env => (`
             proxy_pass  $backend;
             proxy_redirect		off;
           }
+          location /users {
+            set $backend "http://${env}services.sml-server.com:307";
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
   }
 `);
