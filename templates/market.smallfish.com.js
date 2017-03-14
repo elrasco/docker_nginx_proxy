@@ -6,22 +6,28 @@ module.exports = env => (`
             server_name ${env}market.sml-server.com;
 
             location / {
-              proxy_pass		http://${env}services.sml-server.com:90/;
-        			proxy_redirect		off;
+              set $backend "http://${env}services.sml-server.com:90";
+              proxy_pass  $backend;
+              proxy_redirect		off;
             }
 
             location /marketplace-be {
-              proxy_pass		http://${env}services.sml-server.com:81/;
+              set $backend "http://${env}services.sml-server.com:81";
+              rewrite ^/marketplace-be(.*) /$1 break;
+              proxy_pass  $backend;
         			proxy_redirect		off;
             }
 
             location /smallfish-upload {
-              proxy_pass		http://${env}services.sml-server.com:82/;
+              set $backend "http://${env}services.sml-server.com:82";
+              rewrite ^/smallfish-upload(.*) /$1 break;
+              proxy_pass  $backend;
         			proxy_redirect		off;
             }
 
             location /socket.io {
-              proxy_pass		http://${env}live.smallfish.com;
+              set $backend http://${env}live.sml-server.com;
+              proxy_pass  $backend;
               proxy_http_version 1.1;
               proxy_set_header Upgrade $http_upgrade;
               proxy_set_header Connection "upgrade";

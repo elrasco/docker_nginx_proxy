@@ -1,17 +1,6 @@
 #!/bin/bash
 
-host_ip=$(ifconfig docker0 | grep inet | grep -v inet6 | cut -d' ' -f12 | cut -d':' -f2)
-
-if [ $2 == --testing ]
-then
-  host_mappings="--add-host dev.services.internal.sml-server.com:${host_ip} --add-host dev.services.sml-server.com:${host_ip}"
-fi
-
-node index.js --env=$1
+scripts/build.sh $1
 docker build -t smallfish_proxy .
-docker run \
--p 80:80 \
-$host_mappings \
--d \
---name smallfish_proxy \
-smallfish_proxy:latest
+docker run -p 80:80 -d --privileged --name smallfish_proxy smallfish_proxy:latest
+docker exec -it smallfish_proxy iptables -t nat -A OUTPUT -d 172.31.0.2 -j DNAT --to-destination 8.8.8.8

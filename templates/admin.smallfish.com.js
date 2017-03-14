@@ -1,4 +1,3 @@
-
 module.exports = env => (`
   server {
           listen 80;
@@ -6,44 +5,63 @@ module.exports = env => (`
           server_name ${env}admin.sml-server.com;
 
           location / {
-            proxy_pass		http://${env}services.sml-server.com:300/;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:300";
+            proxy_pass  $backend;
+            proxy_redirect  off;
           }
           location /api {
-            proxy_pass		http://${env}services.sml-server.com:301;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:301";
+            proxy_pass  $backend;
+            proxy_redirect  off;
           }
           location /smallfish-auth {
-            proxy_pass	  http://${env}services.internal.sml-server.com:1343/;
+            set $backend "http://${env}services.internal.sml-server.com:1343";
+            rewrite ^/smallfish-auth(.*) /$1 break;
+            proxy_pass  $backend;
       			proxy_redirect		off;
           }
           location /smallfish-upload {
-            proxy_pass		http://${env}services.sml-server.com:82/;
+            set $backend "http://${env}services.sml-server.com:82";
+            rewrite ^/smallfish-upload(.*) /$1 break;
+            proxy_pass  $backend;
       			proxy_redirect		off;
           }
           location /smallfish-api {
-            proxy_pass	  http://${env}services.internal.sml-server.com:1342/;
+            set $backend "http://${env}services.internal.sml-server.com:1342";
+            rewrite ^/smallfish-api(.*) /$1 break;
+            proxy_pass  $backend;
       			proxy_redirect		off;
           }
           location /marketplace-api {
-            proxy_pass	  http://${env}services.internal.sml-server.com:1341/;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.internal.sml-server.com:1341";
+            rewrite ^/marketplace-api(.*) /$1 break;
+            proxy_pass  $backend;
+            proxy_redirect  off;
           }
           location /mailfish {
-            proxy_pass		http://${env}services.sml-server.com:302;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:302";
+            proxy_pass  $backend;
+            proxy_redirect  off;
           }
           location /videohub {
-            proxy_pass		http://${env}services.sml-server.com:303;
-            proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:303";
+            proxy_pass  $backend;
+      			proxy_redirect		off;
           }
           location /projects {
-            proxy_pass		http://${env}services.sml-server.com:305;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:305";
+            proxy_pass  $backend;
+            proxy_redirect		off;
           }
           location /marketplace {
-            proxy_pass		http://${env}services.sml-server.com:306;
-      			proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:306";
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+          location /users {
+            set $backend "http://${env}services.sml-server.com:307";
+            proxy_pass  $backend;
+            proxy_redirect		off;
           }
   }
 `);

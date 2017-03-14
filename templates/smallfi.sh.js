@@ -4,8 +4,10 @@ module.exports = env => (`
           server_name ${env}smallfi.sh;
 
           location / {
-            proxy_pass		http://${env}api.smallfish.com/tiny/;
-            proxy_redirect		off;
+            set $backend "http://${env}proxy.sml-server.com";
+            rewrite ^/(.*) /tiny/$1 break;
+            proxy_pass  $backend;
+        		proxy_redirect		off;
           }
   }
 `);

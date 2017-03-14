@@ -5,7 +5,8 @@ module.exports = env => (`
           server_name ${env}i18n.sml-server.com;
 
           location / {
-            proxy_pass		http://${env}services.sml-server.com:84;
+            set $backend "http://${env}services.sml-server.com:84";
+            proxy_pass  $backend;
             proxy_redirect		off;
           }
   }

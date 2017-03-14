@@ -6,12 +6,15 @@ module.exports = env => (
           server_name ${env}videos.sml-server.com;
 
           location /p {
-            proxy_pass		http://${env}services.sml-server.com:303/p/;
+            set $backend "http://${env}services.sml-server.com:303/p";
+            rewrite ^/p(.*) /$1 break;
+            proxy_pass  $backend;
             proxy_redirect		off;
           }
           location /videohub {
-            proxy_pass		http://${env}services.sml-server.com:303;
-            proxy_redirect		off;
+            set $backend "http://${env}services.sml-server.com:303";
+            proxy_pass  $backend;
+        		proxy_redirect		off;
           }
   }
 `
