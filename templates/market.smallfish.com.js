@@ -1,4 +1,4 @@
-module.exports = env => (`
+module.exports = (env, raw_env) => (`
     server {
             listen 80;
             server_name ${env}market.smallfish.com;
@@ -6,7 +6,7 @@ module.exports = env => (`
             server_name ${env}market.sml-server.com;
 
             location / {
-              set $backend "http://${env}services.sml-server.com:90";
+              set $backend "http://WEBSITES-marketplace-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
               proxy_pass  $backend;
               proxy_redirect		off;
             }
