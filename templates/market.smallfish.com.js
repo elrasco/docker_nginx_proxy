@@ -6,7 +6,7 @@ module.exports = (env, raw_env) => (`
             server_name ${env}market.sml-server.com;
 
             location / {
-              set $backend "http://WEBSITES-marketplace-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+              set $backend "http://website-marketplace-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
               proxy_pass  $backend;
               proxy_redirect		off;
             }
