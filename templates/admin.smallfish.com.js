@@ -34,13 +34,13 @@ module.exports = (env, raw_env) => (`
             proxy_redirect  off;
           }
 
-          location / {
-            set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
+          location /mailfish {
+            set $backend "http://${env}services.sml-server.com:302";
             proxy_pass  $backend;
             proxy_redirect  off;
           }
-          location /mailfish {
-            set $backend "http://website-backoffice-mailfish-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
+          location / {
+            set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
             proxy_redirect  off;
           }
