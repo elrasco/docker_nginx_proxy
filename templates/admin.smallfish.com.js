@@ -1,14 +1,9 @@
-module.exports = env => (`
+module.exports = (env, raw_env) => (`
   server {
           listen 80;
           server_name ${env}admin.smallfish.com;
           server_name ${env}admin.sml-server.com;
 
-          location / {
-            set $backend "http://${env}services.sml-server.com:300";
-            proxy_pass  $backend;
-            proxy_redirect  off;
-          }
           location /api {
             set $backend "http://${env}services.sml-server.com:301";
             proxy_pass  $backend;
@@ -38,28 +33,34 @@ module.exports = env => (`
             proxy_pass  $backend;
             proxy_redirect  off;
           }
+
+          location / {
+            set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
+            proxy_pass  $backend;
+            proxy_redirect  off;
+          }
           location /mailfish {
-            set $backend "http://${env}services.sml-server.com:302";
+            set $backend "http://website-backoffice-mailfish-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
             proxy_redirect  off;
           }
           location /videohub {
-            set $backend "http://${env}services.sml-server.com:303";
+            set $backend "http://website-backoffice-videohub-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
       			proxy_redirect		off;
           }
           location /projects {
-            set $backend "http://${env}services.sml-server.com:305";
+            set $backend "http://website-backoffice-projects-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
             proxy_redirect		off;
           }
           location /marketplace {
-            set $backend "http://${env}services.sml-server.com:306";
+            set $backend "http://website-backoffice-marketplace-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
             proxy_redirect		off;
           }
           location /users {
-            set $backend "http://${env}services.sml-server.com:307";
+            set $backend "http://website-backoffice-users-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
             proxy_pass  $backend;
             proxy_redirect		off;
           }
