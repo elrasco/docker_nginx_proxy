@@ -1,4 +1,4 @@
-module.exports = env => (
+module.exports = (env, raw_env) => (
   `
   server {
           listen 80;
@@ -6,13 +6,13 @@ module.exports = env => (
           server_name ${env}videos.sml-server.com;
 
           location /p {
-            set $backend "http://${env}services.sml-server.com:303/p";
+            set $backend "http://website-backoffice-videohub-${raw_env}.s3-website-eu-west-1.amazonaws.com/p";
             rewrite ^/p(.*) /$1 break;
             proxy_pass  $backend;
             proxy_redirect		off;
           }
           location /videohub {
-            set $backend "http://${env}services.sml-server.com:303";
+            set $backend "http://website-backoffice-videohub-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             proxy_pass  $backend;
         		proxy_redirect		off;
           }
