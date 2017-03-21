@@ -12,6 +12,14 @@ module.exports = (env, env_raw) => {
             proxy_redirect		off;
           }
 
+          location /profilo/campaigns {
+            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ $1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+
           location /landing {
             set $backend "http://website-fugu-landing-${env_raw}.s3-website-eu-west-1.amazonaws.com";
             rewrite ^/landing(.*js|.*ico) $1 break;

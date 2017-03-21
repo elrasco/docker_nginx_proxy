@@ -1,3 +1,13 @@
+const backoffice_app = (name, raw_env) => {
+  return `location /${name} {
+            set $backend "http://website-backoffice-${name}-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ /${name}/$1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }`
+}
+
 module.exports = (env, raw_env) => (`
   server {
           listen 80;
@@ -40,29 +50,16 @@ module.exports = (env, raw_env) => (`
             proxy_redirect  off;
           }
           location / {
-            set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
+            set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ $1 break;          
             proxy_pass  $backend;
             proxy_redirect  off;
           }
-          location /videohub {
-            set $backend "http://website-backoffice-videohub-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
-            proxy_pass  $backend;
-      			proxy_redirect		off;
-          }
-          location /projects {
-            set $backend "http://website-backoffice-projects-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
-          location /marketplace {
-            set $backend "http://website-backoffice-marketplace-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
-          location /users {
-            set $backend "http://website-backoffice-users-${raw_env}.s3-website-eu-west-1.amazonaws.com";            
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
+          ${backoffice_app('videohub',raw_env)}
+          ${backoffice_app('projects',raw_env)}
+          ${backoffice_app('marketplace',raw_env)}
+          ${backoffice_app('users',raw_env)}
+
   }
 `);

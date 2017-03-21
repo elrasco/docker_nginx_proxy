@@ -5,8 +5,11 @@ module.exports = (env, raw_env) => (`
             server_name ${env}travelpeople.smallfish.com;
             server_name ${env}market.sml-server.com;
 
+
             location / {
               set $backend "http://website-marketplace-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+              rewrite /(?!.*js|.*ico|.*css) / break;
+              rewrite ^/(.*)/$ $1 break;
               proxy_pass  $backend;
               proxy_redirect		off;
             }
