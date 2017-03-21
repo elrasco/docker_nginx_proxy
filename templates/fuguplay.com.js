@@ -12,12 +12,26 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
-          location /profilo/campaigns {
+          location = /profilo/campaigns/ {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
             rewrite ^/(.*)/$ $1 break;
             proxy_pass  $backend;
             proxy_redirect		off;
+          }
+          location /v2 {
+            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ /v2/$1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+
+          location /fuguplay-be {
+              set $backend "http://${env}services.sml-server.com:86";
+              rewrite ^/fuguplay-be(.*) /$1 break;
+              proxy_pass  $backend;
+        			proxy_redirect		off;
           }
 
           location /landing {
