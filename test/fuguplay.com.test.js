@@ -41,7 +41,7 @@ function test(host) {
       });
     });
 
-    it.only('/landing/not_existing_resource', function() {
+    it('/landing/not_existing_resource', function() {
       return request.notFound({
         url: '/landing/not_existing_resource',
         host
