@@ -1,6 +1,7 @@
 const request = require('./testRequest');
 
 test('fuguplay.com');
+test('fuguplay.it');
 test('fuguplay.sml-server.com');
 
 function test(host) {
@@ -40,7 +41,7 @@ function test(host) {
       });
     });
 
-    it('/landing/not_existing_resource', function() {
+    it.only('/landing/not_existing_resource', function() {
       return request.notFound({
         url: '/landing/not_existing_resource',
         host

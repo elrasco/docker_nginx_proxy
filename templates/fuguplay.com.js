@@ -4,6 +4,7 @@ module.exports = (env, raw_env) => {
   return (`server {
           listen 80;
           server_name ${env}fuguplay.com;
+          server_name ${env}fuguplay.it;
           server_name ${env}fuguplay.sml-server.com;
 
           location / {
@@ -19,6 +20,7 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
             proxy_redirect		off;
           }
+
           location /v2 {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
