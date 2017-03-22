@@ -2,6 +2,8 @@ module.exports = (env, raw_env) => {
   const port = env === '' ? 80 : 81;
   return (`server {
           listen 80;
+          server_name ${env}www.fuguplay.it;
+          server_name ${env}www.fuguplay.com;
           server_name ${env}fuguplay.com;
           server_name ${env}fuguplay.it;
           server_name ${env}fuguplay.sml-server.com;
