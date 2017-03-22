@@ -1,9 +1,7 @@
 const request = require('./testRequest');
 
 test('fuguplay.com');
-test('www.fuguplay.com');
 test('fuguplay.it');
-test('www.fuguplay.it');
 test('fuguplay.sml-server.com');
 
 function test(host) {
