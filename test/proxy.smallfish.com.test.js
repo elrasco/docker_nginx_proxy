@@ -19,11 +19,11 @@ describe('reverse proxy configuration', function() {
       .expect('Content-Encoding', 'gzip');
   });
 
-  it('should handle a very long url', function() {
+  it('should proxy a very long url', function() {
     const veryLongString = randomString(8000);
     return request.frontend({
-      url: `/?parameter=${veryLongString}`,
-      host: 'smallfish.com'
+      url: `/mailfish/status/alive?parameter=${veryLongString}`,
+      host: 'admin.smallfish.com'
     });
   });
 });

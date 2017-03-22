@@ -42,10 +42,9 @@ function test(host) {
 
     it('/landing/not_existing_resource', function() {
       return request.notFound({
-          url: '/landing/not_existing_resource',
-          host
-        })
-        .expect(/It's not you\. It's us\. Give it another try, please\./);
+        url: '/landing/not_existing_resource',
+        host
+      });
     });
   });
 }

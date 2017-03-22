@@ -5,8 +5,8 @@ const backoffice_app = (name, raw_env) => {
             rewrite ^/(.*)/$ /${name}/$1 break;
             proxy_pass  $backend;
             proxy_redirect		off;
-          }`
-}
+          }`;
+};
 
 module.exports = (env, raw_env) => (`
   server {
@@ -43,16 +43,10 @@ module.exports = (env, raw_env) => (`
             proxy_pass  $backend;
             proxy_redirect  off;
           }
-
-          location /mailfish {
-            set $backend "http://${env}services.sml-server.com:302";
-            proxy_pass  $backend;
-            proxy_redirect  off;
-          }
           location / {
             set $backend "http://website-backoffice-container-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
-            rewrite ^/(.*)/$ $1 break;          
+            rewrite ^/(.*)/$ $1 break;
             proxy_pass  $backend;
             proxy_redirect  off;
           }
@@ -60,6 +54,10 @@ module.exports = (env, raw_env) => (`
           ${backoffice_app('projects',raw_env)}
           ${backoffice_app('marketplace',raw_env)}
           ${backoffice_app('users',raw_env)}
-
+          location /mailfish {
+            set $backend "http://${env}services.sml-server.com:302";
+            proxy_pass  $backend;
+            proxy_redirect  off;
+          }
   }
 `);

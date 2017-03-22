@@ -1,8 +1,10 @@
 const request = require('./testRequest');
+const skip = require('./skip');
 
 describe('smallfi.sh', function() {
 
   it('/', function() {
+    skip.unlessProduction(this);
     return request.post({
         url: '/api/preview',
         host: 'api.smallfish.com',
