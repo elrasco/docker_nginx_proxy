@@ -4,7 +4,7 @@ module.exports = env => (`
           server_name ${env}smallfi.sh;
 
           location / {
-            set $backend "http://${env}proxy.sml-server.com";
+            set $backend "http://${env}services.sml-server.com:81";
             rewrite ^/(.*) /tiny/$1 break;
             proxy_pass  $backend;
         		proxy_redirect		off;
