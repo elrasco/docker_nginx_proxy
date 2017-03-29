@@ -1,5 +1,4 @@
 module.exports = (env, raw_env) => {
-  const port = env === '' ? 80 : 81;
   const prefix = env === '' ? 'www.' : env;
 
   return (`server {
@@ -9,7 +8,7 @@ module.exports = (env, raw_env) => {
           server_name ${env}fuguplay.sml-server.com;
 
           location / {
-            set $backend "http://52.210.144.140:${port}";
+            set $backend "http://${env}legacy.fuguplay.com";
             proxy_connect_timeout       600s;
             proxy_send_timeout          600s;
             proxy_read_timeout          600s;
