@@ -26,12 +26,12 @@ module.exports = (env, raw_env) => {
           }
 
           location = /inc/service/new_login_fb.php {
-            set $backend "http://${env}legacy.fuguplay.com/auth/login";
+            set $backend "http://${env}services.sml-server.com:86/auth/login";
             proxy_pass  $backend;
             proxy_redirect		off;
           }
           location = /inc/service/loginfb.php {
-            set $backend "http://${env}legacy.fuguplay.com/auth/login";
+            set $backend "http://${env}services.sml-server.com:86/auth/login";
             proxy_pass  $backend;
             proxy_redirect		off;
           }
