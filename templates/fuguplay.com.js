@@ -25,6 +25,17 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
+          location = /inc/service/new_login_fb.php {
+            set $backend "http://${env}legacy.fuguplay.com/auth/login";
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+          location = /inc/service/loginfb.php {
+            set $backend "http://${env}legacy.fuguplay.com/auth/login";
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+
           location /v2 {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
