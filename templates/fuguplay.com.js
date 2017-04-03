@@ -36,6 +36,12 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
+          location ~ ^/inc/service/(set_status_pagina|set_cat_pagina)\.php$ {
+              set $backend "http://${env}services.sml-server.com:86/services/$1";
+              proxy_pass  $backend;
+              proxy_redirect		off;
+          }
+
           location /v2 {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
