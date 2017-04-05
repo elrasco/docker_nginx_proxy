@@ -1,6 +1,6 @@
 module.exports = (env, raw_env) => {
   const prefix = env === '' ? 'www.' : env;
-
+  const services = ['set_status_pagina', 'set_cat_pagina', 'set_camp_status', 'loginfb', 'new_login_fb'].join('|');
   return (`server {
           listen 80;
           server_name ${prefix}fuguplay.com;
@@ -25,18 +25,8 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
-          location = /inc/service/new_login_fb.php {
-            set $backend "http://${env}services.sml-server.com:86/auth/login";
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
-          location = /inc/service/loginfb.php {
-            set $backend "http://${env}services.sml-server.com:86/auth/login";
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
 
-          location ~ ^/inc/service/(set_status_pagina|set_cat_pagina)\.php$ {
+          location ~ ^/inc/service/(${services})\.php$ {
               set $backend "http://${env}services.sml-server.com:86/services/$1";
               proxy_pass  $backend;
               proxy_redirect		off;
