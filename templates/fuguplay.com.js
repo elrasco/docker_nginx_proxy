@@ -36,7 +36,7 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
             proxy_redirect		off;
           }
-          location /admin/campagne/nouva/ {
+          location /admin/campagne/nuova/ {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
             rewrite ^/(.*)/$ $1 break;
