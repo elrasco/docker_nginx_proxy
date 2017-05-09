@@ -1,4 +1,4 @@
-module.exports = env => {
+module.exports = (env, raw_env) => {
   const prefix = env === '' ? 'www.' : env;
   return (`server {
           listen 80;
@@ -6,7 +6,7 @@ module.exports = env => {
           server_name ${prefix}sml-server.com;
 
           location / {
-            set $backend "http://website-smallfish-homepage-${env}s3-website-eu-west-1.amazonaws.com";
+            set $backend "http://website-smallfish-homepage-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             proxy_pass  $backend;
         		proxy_redirect		off;
           }
