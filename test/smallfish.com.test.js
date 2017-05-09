@@ -9,7 +9,6 @@ function test(host) {
   describe(host, function() {
 
     it('/', function() {
-      skip.unlessProduction(this);
       return request.frontend({
         url: '/',
         host: host

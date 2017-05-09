@@ -6,7 +6,7 @@ module.exports = env => {
           server_name ${prefix}sml-server.com;
 
           location / {
-            set $backend "http://${env}services.sml-server.com:80";
+            set $backend "http://website-smallfish-homepage-dev.s3-website-eu-west-1.amazonaws.com";
             proxy_pass  $backend;
         		proxy_redirect		off;
           }
