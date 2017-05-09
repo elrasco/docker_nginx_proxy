@@ -50,6 +50,13 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
             proxy_redirect		off;
           }
+          location /condividi/campaign/ {
+            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ $1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
 
 
           location ~ ^/inc/service/(${services})\.php$ {
