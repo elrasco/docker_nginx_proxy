@@ -1,3 +1,15 @@
+const map_location_to_new_fe = loc => (`
+          location ${loc} {
+            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ $1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+`);
+
+
+
 module.exports = (env, raw_env) => {
   const prefix = env === '' ? 'www.' : env;
   const services = ['set_status_pagina', 'set_cat_pagina', 'set_camp_status', 'loginfb', 'new_login_fb'].join('|');
@@ -28,14 +40,12 @@ module.exports = (env, raw_env) => {
           location /home/ {
             return 301 $scheme://${env}fuguplay.com;
           }
+          
+          ${map_location_to_new_fe('/profilo/campaigns/')}
+          ${map_location_to_new_fe('/admin/campagne/nuova/')}
+          ${map_location_to_new_fe('/admin/campagne/modifica/')}
+          ${map_location_to_new_fe('/condividi/campaign/')}
 
-          location = /profilo/campaigns/ {
-            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
-            rewrite /(?!.*js|.*ico|.*css) / break;
-            rewrite ^/(.*)/$ $1 break;
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
 
           location ~ ^/inc/service/(${services})\.php$ {
               set $backend "http://${env}services.sml-server.com:86/services/$1";
