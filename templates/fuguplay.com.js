@@ -1,4 +1,4 @@
-const map_location_to_new_fe = loc => (`
+const map_location_to_new_fe = (raw_env, loc) => (`
           location ${loc} {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
@@ -41,10 +41,10 @@ module.exports = (env, raw_env) => {
             return 301 $scheme://${env}fuguplay.com;
           }
           
-          ${map_location_to_new_fe('/profilo/campaigns/')}
-          ${map_location_to_new_fe('/admin/campagne/nuova/')}
-          ${map_location_to_new_fe('/admin/campagne/modifica/')}
-          ${map_location_to_new_fe('/condividi/campaign/')}
+          ${map_location_to_new_fe(raw_env, '/profilo/campaigns/')}
+          ${map_location_to_new_fe(raw_env, '/admin/campagne/nuova/')}
+          ${map_location_to_new_fe(raw_env, '/admin/campagne/modifica/')}
+          ${map_location_to_new_fe(raw_env, '/condividi/campaign/')}
 
 
           location ~ ^/inc/service/(${services})\.php$ {
