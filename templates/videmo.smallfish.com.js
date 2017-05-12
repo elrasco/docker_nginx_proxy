@@ -7,8 +7,6 @@ module.exports = (env, raw_env) => {
           location / {
             set $backend "http://website-videmo-landing-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             proxy_pass  $backend;
-            proxy_hide_header x-amz-id-2;
-            proxy_hide_header x-amz-request-id;
         		proxy_redirect		off;
           }
     }`);
