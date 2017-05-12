@@ -1,10 +1,12 @@
 const request = require('./testRequest');
+const headers = require('./headers');
 
 test('fuguplay.com');
 test('fuguplay.it');
 test('fuguplay.sml-server.com');
 
 function test(host) {
+
   describe(host, function() {
     it('/', function() {
       return request.frontend({
@@ -18,12 +20,7 @@ function test(host) {
           url: '/landing/it/',
           host
         })
-        .expect(response => {
-          const areThereAnyAmazonHeaders = Object.keys(response.headers).filter(header => header.indexOf('x-amz') > -1);
-          if (areThereAnyAmazonHeaders.length > 0) {
-            throw new Error(`Expected no amazon headers in the response. Got [${areThereAnyAmazonHeaders}]`);
-          }
-        });
+        .expect(headers.noneFromAmazon);
     });
 
     it('/landing/it/', function() {

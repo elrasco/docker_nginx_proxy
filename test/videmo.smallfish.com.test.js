@@ -1,4 +1,5 @@
 const request = require('./testRequest');
+const headers = require('./headers');
 
 test('videmo.smallfish.com');
 test('videmo.sml-server.com');
@@ -19,12 +20,7 @@ function test(host) {
           url: '/',
           host
         })
-        .expect(response => {
-          const areThereAnyAmazonHeaders = Object.keys(response.headers).filter(header => header.indexOf('x-amz') > -1);
-          if (areThereAnyAmazonHeaders.length > 0) {
-            throw new Error(`Expected no amazon headers in the response. Got [${areThereAnyAmazonHeaders}]`);
-          }
-        });
+        .expect(headers.noneFromAmazon);
     });
   });
 }
