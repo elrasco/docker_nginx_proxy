@@ -1,5 +1,6 @@
 const request = require('./testRequest');
 const headers = require('./headers');
+const skip = require('./skip');
 
 test('fuguplay.com');
 test('fuguplay.it');
@@ -9,6 +10,7 @@ function test(host) {
 
   describe(host, function() {
     it('/', function() {
+      skip.onStage(this);
       return request.frontend({
         url: '/',
         host
