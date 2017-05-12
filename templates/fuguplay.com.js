@@ -8,8 +8,6 @@ const map_location_to_new_fe = (raw_env, loc) => (`
           }
 `);
 
-
-
 module.exports = (env, raw_env) => {
   const prefix = env === '' ? 'www.' : env;
   const services = ['set_status_pagina', 'set_cat_pagina', 'set_camp_status', 'loginfb', 'new_login_fb'].join('|');
@@ -40,7 +38,7 @@ module.exports = (env, raw_env) => {
           location /home/ {
             return 301 $scheme://${env}fuguplay.com;
           }
-          
+
           ${map_location_to_new_fe(raw_env, '/profilo/campaigns/')}
           ${map_location_to_new_fe(raw_env, '/admin/campagne/nuova/')}
           ${map_location_to_new_fe(raw_env, '/admin/campagne/modifica/')}

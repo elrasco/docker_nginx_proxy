@@ -1,5 +1,4 @@
 const request = require('./testRequest');
-const skip = require('./skip');
 
 test('smallfish.com');
 test('sml-server.com');
