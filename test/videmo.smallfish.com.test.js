@@ -1,7 +1,7 @@
 const request = require('./testRequest');
 
-test('videmo.smallfish.com');
-test('videmo.sml-server.com');
+test('smallfish.com');
+test('sml-server.com');
 
 function test(host) {
 
