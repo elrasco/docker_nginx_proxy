@@ -1,8 +1,8 @@
 const request = require('./testRequest');
 const headers = require('./headers');
 
-test('videmo.smallfish.com');
-test('videmo.sml-server.com');
+test('trev.smallfish.com');
+test('trev.sml-server.com');
 
 function test(host) {
 
