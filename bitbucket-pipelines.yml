@@ -1,8 +1,0 @@
-pipelines:
-  default:
-    - step:
-        script:
-          - npm install
-          - npm test
-options:
-  docker: true
