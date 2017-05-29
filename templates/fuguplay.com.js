@@ -43,6 +43,7 @@ module.exports = (env, raw_env) => {
           ${map_location_to_new_fe(raw_env, '/admin/campagne/nuova/')}
           ${map_location_to_new_fe(raw_env, '/admin/campagne/modifica/')}
           ${map_location_to_new_fe(raw_env, '/condividi/campaign/')}
+          ${map_location_to_new_fe(raw_env, '/admin/campaigns/')}
 
 
           location ~ ^/inc/service/(${services})\.php$ {
