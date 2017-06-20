@@ -4,7 +4,7 @@ const skip = require('./skip');
 describe('piranafilms.com', function() {
 
   it('/', function() {
-    skip.unlessProduction(this);
+    skip(this).unlessProduction();
     return request.frontend({
       url: '/',
       host: 'piranafilms.com'
@@ -16,7 +16,7 @@ describe('piranafilms.com', function() {
 describe('www.piranafilms.com', function() {
 
   it('/', function() {
-    skip.unlessProduction(this);
+    skip(this).unlessProduction();
     return request.frontend({
       url: '/',
       host: 'www.piranafilms.com'

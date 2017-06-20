@@ -1,11 +1,12 @@
-module.exports.onStage = test => {
-  if(process.env.NODE_ENV === 'stage'){
-    test.skip();
-  }
+const skipIf = (test, conditionOn) => {
+  if (conditionOn(process.env.NODE_ENV)) test.skip();
 };
+const inStage = env => env === 'stage';
+const notInProduction = env => env !== 'production';
 
-module.exports.unlessProduction = test => {
-  if(process.env.NODE_ENV !== 'production'){
-    test.skip();
-  }
+module.exports = testing => {
+  return {
+    onStage: () => skipIf(testing, inStage),
+    unlessProduction: () => skipIf(testing, notInProduction)
+  };
 };

@@ -10,7 +10,7 @@ function test(host) {
 
   describe(host, function() {
     it('/', function() {
-      skip.onStage(this);
+      skip(this).onStage();
       return request.frontend({
         url: '/',
         host
