@@ -21,7 +21,6 @@ const host = host => inEnvironment({
                   .replace(/^fuguplay\.com/, 'www.fuguplay.com')
                   .replace(/^fuguplay\.it/, 'www.fuguplay.it')
                   .replace(/^sml-server\.com/, 'www.sml-server.com')
-                  .replace(/^piranafilms\.com/, 'www.piranafilms.com')
 });
 const send = data => {
   const theRequest = request(toProxy());

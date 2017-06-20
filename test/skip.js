@@ -3,3 +3,9 @@ module.exports.onStage = test => {
     test.skip();
   }
 };
+
+module.exports.unlessProduction = test => {
+  if(process.env.NODE_ENV !== 'production'){
+    test.skip();
+  }
+};
