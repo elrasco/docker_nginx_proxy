@@ -5,7 +5,7 @@ module.exports = (env, raw_env) => {
           server_name ${prefix}piranafilms.com;
 
           location / {
-            set $backend "http://ec2-52-28-116-99.eu-central-1.compute.amazonaws.com:9000";
+            set $backend "http://ec2-52-58-104-171.eu-central-1.compute.amazonaws.com";
             proxy_pass  $backend;
         		proxy_redirect		off;
           }
