@@ -10,5 +10,11 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
         		proxy_redirect		off;
           }
+
+          location /heineken {
+            set $backend "http://www.dvnc.it/heineken/";
+            proxy_pass  $backend;
+        		proxy_redirect		off;
+          }
     }`);
 };

@@ -14,5 +14,11 @@ function test(host) {
       });
     });
 
+    it('/heineken', function() {
+      return request.frontend({
+        url: '/heineken',
+        host: host
+      });
+    });
   });
 }
