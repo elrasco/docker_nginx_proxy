@@ -9,9 +9,9 @@ const map_location_to_new_fe = (raw_env, loc) => (`
 `);
 
 module.exports = (env, raw_env) => {
-  const prefix = env === '' ? 'www.' : env;
-  const services = ['set_status_pagina', 'set_cat_pagina', 'set_camp_status', 'loginfb', 'new_login_fb'].join('|');
-  return (`server {
+    const prefix = env === '' ? 'www.' : env;
+    const services = ['set_status_pagina', 'set_cat_pagina', 'set_camp_status', 'loginfb', 'new_login_fb'].join('|');
+    return (`server {
           listen 80;
           server_name ${prefix}fuguplay.com;
           server_name ${prefix}fuguplay.it;
@@ -44,7 +44,7 @@ module.exports = (env, raw_env) => {
           ${map_location_to_new_fe(raw_env, '/admin/campagne/modifica/')}
           ${map_location_to_new_fe(raw_env, '/condividi/campaign/')}
           ${map_location_to_new_fe(raw_env, '/admin/campaigns/')}
-
+          ${map_location_to_new_fe(raw_env, '/admin/campagne/insights/')}
 
           location ~ ^/inc/service/(${services})\.php$ {
               set $backend "http://${env}services.sml-server.com:86/services/$1";
