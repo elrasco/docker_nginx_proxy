@@ -1,7 +1,6 @@
 const request = require('./testRequest');
 const headers = require('./headers');
 const skip = require('./skip');
-const assert = require('assert');
 
 test('fuguplay.com');
 test('fuguplay.it');
@@ -23,12 +22,13 @@ function test(host) {
     shouldBe200(host, '/landing/favicon.ico');
 
     it('/login/aglogin/', function() {
+      skip(this).onStage();
       return request.frontend({
-        url: '/login/aglogin/',
-        host
-      })
-      .then(response => response.redirects[0])
-      .then(redirect => expect(redirect).to.match(/\/companies\//));
+          url: '/login/aglogin/',
+          host
+        })
+        .then(response => response.redirects[0])
+        .then(redirect => expect(redirect).to.match(/\/companies\//));
     });
 
     it('/landing routes headers should be obfuscated', function() {
