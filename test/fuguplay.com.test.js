@@ -1,20 +1,12 @@
 const request = require('./testRequest');
 const headers = require('./headers');
 const skip = require('./skip');
+const assert = require('assert');
 
 test('fuguplay.com');
 test('fuguplay.it');
 test('fuguplay.sml-server.com');
 
-function shouldBe200(host, url){
-  it(url, function() {
-    skip(this).onStage();
-    return request.frontend({
-      url,
-      host
-    });
-  });
-}
 
 function test(host) {
   describe(host, function() {
@@ -28,7 +20,16 @@ function test(host) {
     shouldBe200(host, '/admin/campaigns/');
     shouldBe200(host, '/admin/campagne/insights/');
 
-    shouldBe200(host,'/landing/favicon.ico');
+    shouldBe200(host, '/landing/favicon.ico');
+
+    it('/login/aglogin/', function() {
+      return request.frontend({
+        url: '/login/aglogin/',
+        host
+      })
+      .then(response => response.redirects[0])
+      .then(redirect => expect(redirect).to.match(/\/companies\//));
+    });
 
     it('/landing routes headers should be obfuscated', function() {
       return request.frontend({
@@ -49,6 +50,16 @@ function test(host) {
         url: '/landing/not_existing_resource/',
         host
       });
+    });
+  });
+}
+
+function shouldBe200(host, url) {
+  it(url, function() {
+    skip(this).onStage();
+    return request.frontend({
+      url,
+      host
     });
   });
 }

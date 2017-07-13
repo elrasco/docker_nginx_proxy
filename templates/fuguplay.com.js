@@ -45,6 +45,10 @@ module.exports = (env, raw_env) => {
             return 301 $scheme://${env}fuguplay.com;
           }
 
+          location /login/aglogin/ {
+            return 301 $scheme://${env}fuguplay.com/companies/;
+          }
+
           location ~ ^${pages} {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;

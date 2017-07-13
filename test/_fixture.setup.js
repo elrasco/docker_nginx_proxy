@@ -1,3 +1,9 @@
+const chai = require('chai');
+
+before(function() {
+  global.expect = chai.expect;
+});
+
 before(function() {
   return require('./testRequest').post({
       host: 'api.smallfish.com',
