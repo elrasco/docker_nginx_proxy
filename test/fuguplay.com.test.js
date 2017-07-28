@@ -6,7 +6,6 @@ test('fuguplay.com');
 test('fuguplay.it');
 test('fuguplay.sml-server.com');
 
-
 function test(host) {
   describe(host, function() {
 
@@ -18,8 +17,8 @@ function test(host) {
     shouldBe200(host, '/condividi/campaign/');
     shouldBe200(host, '/admin/campaigns/');
     shouldBe200(host, '/admin/campagne/insights/');
-
     shouldBe200(host, '/landing/favicon.ico');
+    shouldBe200(host, '/restyling/profilo/pagamenti/');
 
     it('/login/aglogin/', function() {
       skip(this).onStage();

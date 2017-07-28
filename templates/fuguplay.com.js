@@ -12,7 +12,8 @@ const pages = [
   '/admin/campagne/insights/',
   '/condividi/campaign/',
   '/profilo/campaigns/',
-  '/companies/'
+  '/companies/',
+  '/restyling/profilo/pagamenti/'
 ].join('|');
 
 module.exports = (env, raw_env) => {
