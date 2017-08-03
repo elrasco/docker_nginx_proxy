@@ -52,6 +52,7 @@ function test(host) {
     });
 
     it('/downloads/notula.docx should be a file to download', function(){
+      skip(this).onStage();
       return request.frontend({
         url: '/downloads/notula.docx',
         host
