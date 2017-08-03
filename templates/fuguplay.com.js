@@ -42,12 +42,26 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
+          location /homepage {
+            set $backend "http://website-fuguplay-homepage-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            rewrite /(?!.*js|.*ico|.*css) / break;
+            rewrite ^/(.*)/$ /v2/$1 break;
+            proxy_pass  $backend;
+            proxy_redirect		off;
+          }
+
           location /home/ {
             return 301 $scheme://${env}fuguplay.com;
           }
 
           location /login/aglogin/ {
             return 301 $scheme://${env}fuguplay.com/companies/;
+          }
+
+          location /downloads {
+            set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
+            proxy_pass  $backend;
+            proxy_redirect		off;
           }
 
           location ~ ^${pages} {
@@ -66,14 +80,6 @@ module.exports = (env, raw_env) => {
 
           location /v2 {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
-            rewrite /(?!.*js|.*ico|.*css) / break;
-            rewrite ^/(.*)/$ /v2/$1 break;
-            proxy_pass  $backend;
-            proxy_redirect		off;
-          }
-
-          location /homepage {
-            set $backend "http://website-fuguplay-homepage-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             rewrite /(?!.*js|.*ico|.*css) / break;
             rewrite ^/(.*)/$ /v2/$1 break;
             proxy_pass  $backend;

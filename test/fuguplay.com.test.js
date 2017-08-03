@@ -50,6 +50,14 @@ function test(host) {
         host
       });
     });
+
+    it('/downloads/notula.docx should be a file to download', function(){
+      return request.frontend({
+        url: '/downloads/notula.docx',
+        host
+      })
+      .expect(headers.isADocument)
+    });
   });
 }
 
