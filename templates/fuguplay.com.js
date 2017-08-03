@@ -13,7 +13,7 @@ const pages = [
   '/condividi/campaign/',
   '/profilo/campaigns/',
   '/companies/',
-  '/restyling/profilo/pagamenti/'
+  '/restyling/.*/pagamenti/'
 ].join('|');
 
 module.exports = (env, raw_env) => {

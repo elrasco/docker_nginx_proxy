@@ -18,7 +18,9 @@ function test(host) {
     shouldBe200(host, '/admin/campaigns/');
     shouldBe200(host, '/admin/campagne/insights/');
     shouldBe200(host, '/landing/favicon.ico');
+
     shouldBe200(host, '/restyling/profilo/pagamenti/');
+    shouldBe200(host, '/restyling/admin/utente/a_user_id/pagamenti/');
 
     it('/login/aglogin/', function() {
       skip(this).onStage();
@@ -51,13 +53,13 @@ function test(host) {
       });
     });
 
-    it('/downloads/notula.docx should be a file to download', function(){
+    it('/downloads/notula.docx should be a file to download', function() {
       skip(this).onStage();
       return request.frontend({
-        url: '/downloads/notula.docx',
-        host
-      })
-      .expect(headers.isADocument)
+          url: '/downloads/notula.docx',
+          host
+        })
+        .expect(headers.isADocument);
     });
   });
 }
