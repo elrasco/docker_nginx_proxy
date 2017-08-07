@@ -20,6 +20,8 @@ function test(host) {
       shouldBe200(host, '/landing/favicon.ico');
       shouldBe200(host, '/restyling/profilo/pagamenti/');
       shouldBe200(host, '/admin/utente/a_user_id/pagamenti/');
+      shouldBe200(host, '/admin/pagamenti/');
+      
       it('/login/aglogin/', function() {
         skip(this).onStage();
         return request.frontend({
