@@ -29,9 +29,18 @@ function test(host) {
             url: '/login/aglogin/',
             host
           })
-          .then(response => response.redirects[0])
-          .then(redirect => expect(redirect).to.match(/\/companies\//));
+          .expect(headers.redirectedTo(/\/companies\//));
       });
+
+      it('/pagamenti/', function() {
+        skip(this).onStage();
+        return request.frontend({
+            url: '/pagamenti/',
+            host
+          })
+          .expect(headers.redirectedTo(/\/profilo\/pagamenti\//));
+      });
+
       it('/downloads/notula.docx should be a file to download', function() {
         skip(this).onStage();
         return request.frontend({

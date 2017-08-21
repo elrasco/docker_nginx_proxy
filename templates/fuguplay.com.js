@@ -60,6 +60,10 @@ module.exports = (env, raw_env) => {
             return 301 $scheme://${env}fuguplay.com/companies/;
           }
 
+          location /pagamenti/ {
+            return 301 $scheme://${env}fuguplay.com/profilo/pagamenti/;
+          }
+
           location /downloads {
             set $backend "http://website-fuguplay-fe-${raw_env}.s3-website-eu-west-1.amazonaws.com";
             proxy_pass  $backend;

@@ -2,6 +2,10 @@ module.exports.isADocument = response => {
   return expect(response.headers['content-type']).to.match(/application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document/);
 };
 
+module.exports.redirectedTo = url => response => {
+  return expect(response.redirects[0]).to.match(url);
+};
+
 module.exports.noneFromAmazon = response => {
   const amzHeaders = Object.keys(response.headers).filter(header => header.indexOf('x-amz') > -1);
   if (amzHeaders.length > 0) {
