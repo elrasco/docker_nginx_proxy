@@ -18,7 +18,6 @@ function test(host) {
       shouldBe200(host, '/admin/campaigns/');
       shouldBe200(host, '/admin/campagne/insights/');
       shouldBe200(host, '/landing/favicon.ico');
-      shouldBe200(host, '/restyling/profilo/pagamenti/');
       shouldBe200(host, '/profilo/pagamenti/');
       shouldBe200(host, '/admin/utente/a_user_id/pagamenti/');
       shouldBe200(host, '/admin/pagamenti/');

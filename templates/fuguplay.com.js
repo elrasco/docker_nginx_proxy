@@ -13,7 +13,6 @@ const pages = [
   '/condividi/campaign/',
   '/profilo/campaigns/',
   '/companies/',
-  '/restyling/profilo/pagamenti/',
   '/profilo/pagamenti/',
   '/admin/?.*/pagamenti/'
 ].join('|');
