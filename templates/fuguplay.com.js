@@ -1,25 +1,20 @@
-const services = [
-  'set_status_pagina',
-  'set_cat_pagina',
-  'set_camp_status',
-  'loginfb',
-  'new_login_fb'
-].join('|');
+const services = ["set_status_pagina", "set_cat_pagina", "set_camp_status", "loginfb", "new_login_fb"].join("|");
 const pages = [
-  '/admin/campagne/nuova/',
-  '/admin/campagne/modifica/',
-  '/admin/campaigns/',
-  '/admin/campagne/insights/',
-  '/condividi/campaign/',
-  '/profilo/campaigns/',
-  '/companies/',
-  '/profilo/pagamenti/',
-  '/admin/?.*/pagamenti/'
-].join('|');
+  "/admin/campagne/nuova/",
+  "/admin/campagne/modifica/",
+  "/admin/campaigns/",
+  "/admin/campagne/insights/",
+  "/condividi/campaign/",
+  "/profilo/campaigns/",
+  "/companies/",
+  "/profilo/pagamenti/",
+  "/admin/?.*/pagamenti/",
+  "/admin/restyling/users/"
+].join("|");
 
 module.exports = (env, raw_env) => {
-  const prefix = env === '' ? 'www.' : env;
-  return (`server {
+  const prefix = env === "" ? "www." : env;
+  return `server {
           listen 80;
           server_name ${prefix}fuguplay.com;
           server_name ${prefix}fuguplay.it;
@@ -104,5 +99,5 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
       			proxy_redirect		off;
           }
-  }`);
+  }`;
 };
