@@ -9,7 +9,8 @@ const pages = [
   "/companies/",
   "/profilo/pagamenti/",
   "/admin/?.*/pagamenti/",
-  "/admin/users/"
+  "/admin/users/",
+  "/admin/overview/"
 ].join("|");
 
 module.exports = (env, raw_env) => {
@@ -83,12 +84,6 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
             proxy_redirect		off;
           }
-
-          location ~ ^/fuguplay-be/insights/(reactions|comments|audience|shares|stories|reach|retention|details|global)/([0-9]*)$ {
-            set $backend "http://${env}services.sml-server.com:86/insights/$1/$2";
-            proxy_pass  $backend;
-            proxy_redirect		off;
-        }
 
           location /fuguplay-be {
               set $backend "http://${env}services.sml-server.com:86";
