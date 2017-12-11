@@ -85,6 +85,15 @@ module.exports = (env, raw_env) => {
             proxy_redirect		off;
           }
 
+          location ~ ^/fuguplay-be/insights/(reactions|comments|audience|shares|stories|reach|retention|details|global)/([0-9]*)$ {
+            set $backend "http://${env}services.sml-server.com:86/insights/$1/$2";
+            proxy_pass  $backend;
+
+            proxy_cache fuguplay_insights;
+            
+            proxy_redirect		off;
+          }
+
           location /fuguplay-be {
               set $backend "http://${env}services.sml-server.com:86";
               rewrite ^/fuguplay-be(.*) /$1 break;
