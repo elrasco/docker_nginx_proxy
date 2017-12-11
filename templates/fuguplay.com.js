@@ -90,6 +90,7 @@ module.exports = (env, raw_env) => {
             proxy_pass  $backend;
 
             proxy_cache fuguplay_insights;
+            proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
             
             proxy_redirect		off;
           }
