@@ -9,7 +9,8 @@ const pages = [
   "/companies/",
   "/profilo/pagamenti/",
   "/admin/?.*/pagamenti/",
-  "/admin/users/"
+  "/admin/users/",
+  "/admin/overview/"
 ].join("|");
 
 module.exports = (env, raw_env) => {

@@ -22,6 +22,7 @@ function test(host) {
       shouldBe200(host, "/admin/utente/a_user_id/pagamenti/");
       shouldBe200(host, "/admin/pagamenti/");
       shouldBe200(host, "/admin/users/");
+      shouldBe200(host, "/admin/overview/");
 
       it("/login/aglogin/", function() {
         skip(this).onStage();
