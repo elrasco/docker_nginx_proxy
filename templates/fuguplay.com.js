@@ -86,7 +86,7 @@ module.exports = (env, raw_env) => {
           }
 
           location ~ ^/fuguplay-be/insights/(reactions|comments|audience|shares|stories|reach|retention|details|global)/([0-9]*)$ {
-            set $backend "http://${env}services.sml-server.com:86/insights/$1/$2";
+            set $backend "http://${env}services.sml-server.com:86/insight_s/$1/$2";
             proxy_set_header X-Custom-Referrer "quellonuovo";
             proxy_pass  $backend;
             proxy_redirect		off;
