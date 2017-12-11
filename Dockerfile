@@ -7,6 +7,7 @@ RUN apt-get update && \
 # Main configs
 RUN rm /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx
+RUN mkdir /cache
 
 # Virtual hosts
 COPY dist/* /etc/nginx/conf.d/
