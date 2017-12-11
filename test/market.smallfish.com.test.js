@@ -11,7 +11,7 @@ function test(host) {
 
     it('/', function() {
       return request.frontend({
-        url: '/',
+        url: '/browse',
         host: host
       });
     });
