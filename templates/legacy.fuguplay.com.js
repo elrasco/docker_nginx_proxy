@@ -7,6 +7,7 @@ module.exports = (env, raw_env) => {
           server_name ${env}legacy.fuguplay.com;
 
           proxy_ignore_client_abort   on;
+          fastcgi_connect_timeout 75s;
 
           location / {
             set $backend "http://52.210.144.140:${port}";
