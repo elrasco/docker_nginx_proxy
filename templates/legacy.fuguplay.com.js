@@ -1,8 +1,8 @@
 module.exports = (env, raw_env) => {
-  const port = env === '' ? 80 : 81;
-  const prefix = env === '' ? 'www.' : env;
+  const port = env === "" ? 80 : 81;
+  const prefix = env === "" ? "www." : env;
 
-  return (`server {
+  return `server {
           listen 80;
           server_name ${env}legacy.fuguplay.com;
 
@@ -11,9 +11,10 @@ module.exports = (env, raw_env) => {
             proxy_connect_timeout       600s;
             proxy_send_timeout          600s;
             proxy_read_timeout          600s;
-            send_timeout                600s;
+            send_timeout                120s;
+            proxy_ignore_client_abort   on;
             proxy_pass  $backend;
             proxy_redirect		off;
           }
-  }`);
+  }`;
 };
