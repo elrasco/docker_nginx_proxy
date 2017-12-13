@@ -21,12 +21,16 @@ module.exports = (env, raw_env) => {
           server_name ${prefix}fuguplay.it;
           server_name ${env}fuguplay.sml-server.com;
 
+          fastcgi_connect_timeout 75s;
+          proxy_ignore_client_abort   on;            
+
           location / {
             set $backend "http://${env}legacy.fuguplay.com";
             proxy_connect_timeout       600s;
             proxy_send_timeout          600s;
             proxy_read_timeout          600s;
             send_timeout                600s;
+            
             proxy_pass  $backend;
             proxy_redirect		off;
           }
@@ -89,8 +93,18 @@ module.exports = (env, raw_env) => {
             set $backend "http://${env}services.sml-server.com:86/insights/$1/$2";
             proxy_pass  $backend;
 
-            proxy_cache fuguplay_insights;
+            proxy_cache fuguplay;
             proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+            
+            proxy_redirect		off;
+          }
+
+          location ~ ^/fuguplay-be/campaign/(adminAll|all)$ {
+            set $backend "http://${env}services.sml-server.com:86/campaign/$1";
+            proxy_pass  $backend;
+
+            proxy_cache fuguplay;
+            proxy_cache_revalidate on;
             
             proxy_redirect		off;
           }
