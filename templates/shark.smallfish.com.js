@@ -1,5 +1,5 @@
 module.exports = (env, raw_env) => {
-  const prefix = env === "" ? "" : env + ".";
+  const prefix = env === "" ? "" : env;
 
   return `server {
             listen 80;
