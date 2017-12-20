@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = (env, raw_env) => {
   const prefix = env === "" ? "" : env + ".";
 
   return `server {
